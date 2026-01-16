@@ -11,5 +11,5 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public interface IFilenameParserService {
-    String twitterParser(String str);
+    String parsingDistributor(String filename);
 }

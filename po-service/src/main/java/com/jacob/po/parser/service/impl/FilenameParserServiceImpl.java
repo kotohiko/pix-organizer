@@ -2,6 +2,9 @@ package com.jacob.po.parser.service.impl;
 
 import com.jacob.po.parser.service.IFilenameParserService;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author Kotohiko
@@ -11,8 +14,26 @@ import com.jacob.po.parser.service.IFilenameParserService;
  **/
 public class FilenameParserServiceImpl implements IFilenameParserService {
 
+    private static final Pattern PIXIV_FILENAME_FORMAT = Pattern.compile("\\d{8,9}_p\\d+");
+
+    private StringBuilder getStringDraft(String string) {
+        return new StringBuilder(string);
+    }
+
     @Override
-    public String twitterParser(String str) {
+    public String parsingDistributor(String filename) {
+        Matcher pixivMatcher = PIXIV_FILENAME_FORMAT.matcher(filename);
+        if (filename.contains("httpsx.com")) {
+            return this.twitterParser(filename);
+        } else if (pixivMatcher.find()) {
+            return this.pixivParser(filename);
+        } else if (filename.contains("httpsdanbooru")) {
+            return this.danbooruParser(filename);
+        }
+        return "";
+    }
+
+    private String twitterParser(String str) {
         var sb = this.getStringDraft(str);
         if (str.contains("httpstwitter.com")) {
             sb.replace(0, 16, "https://x.com/");
@@ -34,7 +55,12 @@ public class FilenameParserServiceImpl implements IFilenameParserService {
         }
     }
 
-    private StringBuilder getStringDraft(String string) {
-        return new StringBuilder(string);
+    private String pixivParser(String str) {
+        var sb = this.getStringDraft(str);
+        return "https://www.pixiv.net/artworks/" + sb.substring(0, sb.indexOf("_p"));
+    }
+
+    private String danbooruParser(String str) {
+        return str.replaceAll("^(https)(danbooru\\.donmai\\.us)(posts)(\\d+)$", "$1://$2/$3/$4");
     }
 }

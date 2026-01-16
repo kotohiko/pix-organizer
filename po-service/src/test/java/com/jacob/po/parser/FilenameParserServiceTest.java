@@ -23,13 +23,13 @@ public class FilenameParserServiceTest {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         FilenameParserServiceImpl parserService = new FilenameParserServiceImpl();
 
-        System.out.println("===========================================");
-        System.out.println("   Twitter Filename Parser Utility v1.2    ");
-        System.out.println("   (Type 'exit' or 'quit' to stop)         ");
-        System.out.println("===========================================");
+        System.out.println("=============================================");
+        System.out.println("||    Pix Filename Parser Utility v1.2     ||");
+        System.out.println("||    (Type 'exit' or 'quit' to stop)      ||");
+        System.out.println("=============================================");
 
         while (true) {
-            System.out.print("\n[Input] Please paste the filename: ");
+            System.out.print("\n[Input] Please input the filename: ");
             String input = reader.readLine();
 
             // Handle exit commands
@@ -45,7 +45,7 @@ public class FilenameParserServiceTest {
 
             try {
                 // Parse the input
-                String out = parserService.twitterParser(input);
+                String out = parserService.parsingDistributor(input);
 
                 System.out.println("✅ Success!");
                 System.out.println("🔗 URL: " + out);
