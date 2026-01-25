@@ -29,8 +29,8 @@ public class YamlConfigFileLoader {
         }
     }
 
-    public String getWarehousePath() {
-        return (String) config.get("warehouse_path");
+    public String getDeliveryCarPath() {
+        return (String) config.get("delivery_car");
     }
 
     @SuppressWarnings("unchecked")

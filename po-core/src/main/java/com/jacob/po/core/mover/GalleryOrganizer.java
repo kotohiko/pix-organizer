@@ -28,7 +28,7 @@ public class GalleryOrganizer {
 
     private static final String PROMPT = ">> ";
 
-    private static final String WH_GUIDE_CONFIG_PATH = "po-core/src/main/resources/warehouse-guide-config.yaml";
+    private static final String WH_GUIDE_CONFIG_PATH = "po-core/src/main/resources/delivery-guide-config.yaml";
 
     private final YamlConfigFileLoader yamlConfigFileLoader;
 
@@ -45,9 +45,9 @@ public class GalleryOrganizer {
      * Entry point of the application. Sets up monitor and command loop.
      */
     public void start() {
-        Path warehouse = Paths.get(yamlConfigFileLoader.getWarehousePath());
+        Path deliveryCarPath = Paths.get(yamlConfigFileLoader.getDeliveryCarPath());
 
-        this.startBackgroundMonitor(warehouse);
+        this.startBackgroundMonitor(deliveryCarPath);
         this.printWelcomeMessage();
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
@@ -56,7 +56,7 @@ public class GalleryOrganizer {
                 String input = reader.readLine();
                 if (input == null || "exit".equalsIgnoreCase(input.trim())) break;
 
-                processUserCommand(input.trim(), warehouse);
+                this.processUserCommand(input.trim(), deliveryCarPath);
             }
         } catch (IOException e) {
             logger.error("System I/O error: {}", e.getMessage());
@@ -66,10 +66,10 @@ public class GalleryOrganizer {
     /**
      * Decides which action to take based on user input.
      *
-     * @param input     The raw user input
-     * @param warehouse The source warehouse path
+     * @param input       The raw user input
+     * @param deliveryCar The source deliveryCar path
      */
-    private void processUserCommand(String input, Path warehouse) {
+    private void processUserCommand(String input, Path deliveryCar) {
         if (input.isEmpty()) return;
 
         if ("reload".equalsIgnoreCase(input)) {
@@ -80,17 +80,17 @@ public class GalleryOrganizer {
         if (input.toLowerCase().startsWith("open -s")) {
             this.handleOpenFolder(input.substring(7).trim());
         } else {
-            this.handleMoveSequence(input, warehouse);
+            this.handleMoveSequence(input, deliveryCar);
         }
     }
 
     /**
      * Coordinates the file scanning and moving process.
      */
-    private void handleMoveSequence(String cmd, Path warehouse) {
-        List<Path> files = scanWarehouse(warehouse);
+    private void handleMoveSequence(String cmd, Path deliveryCar) {
+        List<Path> files = scanDeliveryCar(deliveryCar);
         if (files.isEmpty()) {
-            System.out.println("[Info] Warehouse is empty. No files to move.");
+            System.out.println("[Info] Delivery car is empty. No files to move.");
             return;
         }
         this.handleBatchMove(files, cmd);
@@ -152,16 +152,16 @@ public class GalleryOrganizer {
     }
 
     /**
-     * Scans the warehouse directory for regular files.
+     * Scans the deliveryCar directory for regular files.
      */
-    private List<Path> scanWarehouse(Path warehouse) {
+    private List<Path> scanDeliveryCar(Path deliveryCar) {
         List<Path> files = new ArrayList<>();
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(warehouse)) {
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(deliveryCar)) {
             for (Path entry : stream) {
                 if (Files.isRegularFile(entry)) files.add(entry);
             }
         } catch (IOException e) {
-            logger.error("Failed to scan warehouse: {}", e.getMessage());
+            logger.error("Failed to scan delivery car: {}", e.getMessage());
         }
         return files;
     }
