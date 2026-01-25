@@ -1,0 +1,47 @@
+# 基础路径配置
+warehouse_path: "S:/po-assets/gallery/warehouse"
+
+# 指令映射关系 (指令: 目标路径)
+# 建议使用正斜杠 /，Java 在 Windows 下也能完美识别
+mappings:
+  ###################################### 二次元世界 ######################################
+  # 原神
+  ## 须弥
+  nahida: "S:/po-assets/gallery/二次元/原神/纳西妲"
+  纳西妲: "S:/po-assets/gallery/二次元/原神/纳西妲"
+  草神: "S:/po-assets/gallery/二次元/原神/纳西妲"
+  小吉祥草王: "S:/po-assets/gallery/二次元/原神/纳西妲"
+  ## 挪德卡莱
+  columbina: "S:/po-assets/gallery/二次元/原神/哥伦比娅"
+
+  # 蔚蓝档案
+  ## 阿拜多斯高级中学
+  星野: "S:/po-assets/gallery/二次元/蔚蓝档案/阿拜多斯高级中学/小鸟游星野"
+  小鸟游星野: "S:/po-assets/gallery/二次元/蔚蓝档案/阿拜多斯高级中学/小鸟游星野"
+  大叔: "S:/po-assets/gallery/二次元/蔚蓝档案/阿拜多斯高级中学/小鸟游星野"
+  ## 崔尼蒂综合学院
+  seia: "S:/po-assets/gallery/二次元/蔚蓝档案/崔尼蒂综合学院/茶会/百合园圣娅"
+  圣娅: "S:/po-assets/gallery/二次元/蔚蓝档案/崔尼蒂综合学院/茶会/百合园圣娅"
+  百合园圣娅: "S:/po-assets/gallery/二次元/蔚蓝档案/崔尼蒂综合学院/茶会/百合园圣娅"
+  ## 山海经高级中学
+  kiki: "S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/龙华妃咲"
+  kisaki: "S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/龙华妃咲"
+  Kisaki: "S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/龙华妃咲"
+  妃咲: "S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/龙华妃咲"
+  龙华妃咲: "S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/龙华妃咲"
+  门主: "S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/龙华妃咲"
+  门主大人: "S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/龙华妃咲"
+  ## 海兰德铁道学院
+  橘光: "S:/po-assets/gallery/二次元/蔚蓝档案/海兰德铁道学院/橘光 & 橘望"
+  橘望: "S:/po-assets/gallery/二次元/蔚蓝档案/海兰德铁道学院/橘光 & 橘望"
+  铁道双子: "S:/po-assets/gallery/二次元/蔚蓝档案/海兰德铁道学院/橘光 & 橘望"
+
+  # 崩坏：星穹铁道
+  ## 云璃
+  云璃: S:/po-assets/gallery/二次元/崩坏：星穹铁道/云璃
+  yunli: S:/po-assets/gallery/二次元/崩坏：星穹铁道/云璃
+  Yunli: S:/po-assets/gallery/二次元/崩坏：星穹铁道/云璃
+
+  ###################################### 三次元世界 ######################################
+  日本古风: "S:/po-assets/gallery/三次元/日本古风"
+

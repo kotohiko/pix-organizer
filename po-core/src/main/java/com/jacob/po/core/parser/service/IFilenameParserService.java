@@ -1,4 +1,4 @@
-package com.jacob.po.parser.service;
+package com.jacob.po.core.parser.service;
 
 import org.springframework.stereotype.Service;
 

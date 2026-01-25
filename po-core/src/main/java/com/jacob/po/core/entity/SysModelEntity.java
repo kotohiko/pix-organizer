@@ -1,4 +1,4 @@
-package com.jacob.po.entity;
+package com.jacob.po.core.entity;
 
 import lombok.Data;
 import lombok.Getter;

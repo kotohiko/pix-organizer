@@ -1,6 +1,6 @@
 package com.jacob.po.client.common;
 
-import com.jacob.po.utils.IdGeneratorUtils;
+import com.jacob.po.core.common.helper.IdGeneratorHelper;
 
 /**
  *
@@ -11,8 +11,8 @@ import com.jacob.po.utils.IdGeneratorUtils;
  **/
 public class IdGeneratorUtilsTest {
     static void main() {
-        System.out.println("Random IP tag ID: " + IdGeneratorUtils.getIpTagId());
-        System.out.println("Random character tag ID: " + IdGeneratorUtils.getCharTagId());
-        System.out.println("Random general tag ID: " + IdGeneratorUtils.getGeneralTagId());
+        System.out.println("Random IP tag ID: " + IdGeneratorHelper.getIpTagId());
+        System.out.println("Random character tag ID: " + IdGeneratorHelper.getCharTagId());
+        System.out.println("Random general tag ID: " + IdGeneratorHelper.getGeneralTagId());
     }
 }

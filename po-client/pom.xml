@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.jacob</groupId>
-            <artifactId>po-service</artifactId>
+            <artifactId>po-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

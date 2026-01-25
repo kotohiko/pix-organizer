@@ -1,7 +1,8 @@
 package com.jacob.po.client.parser;
 
-import com.jacob.po.parser.service.IFilenameParserService;
-import com.jacob.po.parser.service.impl.FilenameParserServiceImpl;
+import com.jacob.po.core.parser.service.IFilenameParserService;
+import com.jacob.po.core.parser.service.impl.FilenameParserServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -17,6 +18,7 @@ import java.net.URISyntaxException;
  * @version 1.2
  * @since Dec 07, 2025
  **/
+@Slf4j
 public class FilenameParserServiceTest {
 
     public static void main(String[] args) throws IOException {
@@ -24,10 +26,10 @@ public class FilenameParserServiceTest {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         IFilenameParserService parserService = new FilenameParserServiceImpl();
 
-        System.out.println("=============================================");
-        System.out.println("||    Pix Filename Parser Utility v1.2     ||");
-        System.out.println("||    (Type 'exit' or 'quit' to stop)      ||");
-        System.out.println("=============================================");
+        log.info("=============================================");
+        log.info("||    Pix Filename Parser Utility v1.2     ||");
+        log.info("||    (Type 'exit' or 'quit' to stop)      ||");
+        log.info("=============================================");
 
         while (true) {
             System.out.print("\n[Input] Please input the filename: ");

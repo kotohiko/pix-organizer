@@ -1,4 +1,4 @@
-package com.jacob.po.utils;
+package com.jacob.po.core.common.helper;
 
 import java.util.Random;
 
@@ -15,7 +15,7 @@ import java.util.Random;
  * @apiNote PixOrganizer ID generator
  * @since Nov 21, 2025, 12:46 AM
  **/
-public class IdGeneratorUtils {
+public class IdGeneratorHelper {
 
     /**
      * A single, shared instance of {@code Random} to minimize object creation overhead.
@@ -29,7 +29,7 @@ public class IdGeneratorUtils {
     /**
      * Private constructor to prevent instantiation of this utility class.
      */
-    private IdGeneratorUtils() {
+    private IdGeneratorHelper() {
     }
 
     /**

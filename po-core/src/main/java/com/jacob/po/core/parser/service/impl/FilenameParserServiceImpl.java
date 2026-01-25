@@ -1,6 +1,6 @@
-package com.jacob.po.parser.service.impl;
+package com.jacob.po.core.parser.service.impl;
 
-import com.jacob.po.parser.service.IFilenameParserService;
+import com.jacob.po.core.parser.service.IFilenameParserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
