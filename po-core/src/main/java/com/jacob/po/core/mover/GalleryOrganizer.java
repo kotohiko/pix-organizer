@@ -14,9 +14,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * {@link GalleryOrganizer} is a lightweight CLI-based asset organizing tool.
+ *
  * <p>
- * Core organizer service that handles batch moving of image assets
- * and provides quick directory navigation via command aliases.
+ * It continuously monitors a configured "delivery car" directory using
+ * {@link java.nio.file.WatchService} and allows users to:
+ * </p>
+ *
+ * <ul>
+ *   <li>Batch move newly delivered image files to destination folders via command aliases</li>
+ *   <li>Quickly open configured target directories using system file explorer</li>
+ *   <li>Reload YAML-based command-to-path mappings at runtime</li>
+ * </ul>
+ *
+ * <p>
+ * This class acts as the application entry point and command dispatcher.
  * </p>
  *
  * @author tachi
@@ -24,25 +36,60 @@ import java.util.List;
  */
 public class GalleryOrganizer {
 
+    /**
+     * Logger for application lifecycle and error reporting
+     */
     private static final Logger logger = LoggerFactory.getLogger(GalleryOrganizer.class);
 
+    /**
+     * Console prompt prefix
+     */
     private static final String PROMPT = ">> ";
 
-    private static final String WH_GUIDE_CONFIG_PATH = "po-core/src/main/resources/delivery-guide-config.yaml";
+    /**
+     * Absolute or project-relative path to the YAML configuration file
+     * that defines command-to-destination mappings.
+     */
+    private static final String WH_GUIDE_CONFIG_PATH =
+            "po-core/src/main/resources/delivery-guide-config.yaml";
 
+    /**
+     * YAML configuration loader responsible for resolving aliases
+     * to actual filesystem paths.
+     */
     private final YamlConfigFileLoader yamlConfigFileLoader;
 
+    /**
+     * Creates a GalleryOrganizer instance and loads the YAML configuration.
+     *
+     * <p>
+     * The configuration file is loaded eagerly during construction.
+     * </p>
+     *
+     * @throws RuntimeException if the configuration file cannot be loaded
+     */
     public GalleryOrganizer() {
         this.yamlConfigFileLoader = new YamlConfigFileLoader();
         this.yamlConfigFileLoader.load(WH_GUIDE_CONFIG_PATH);
     }
 
+    /**
+     * Application entry point.
+     *
+     * @param args command-line arguments (currently unused)
+     */
     public static void main(String[] args) {
         new GalleryOrganizer().start();
     }
 
     /**
-     * Entry point of the application. Sets up monitor and command loop.
+     * Starts the application.
+     *
+     * <p>
+     * This method initializes the background directory monitor,
+     * prints the welcome banner, and enters the interactive
+     * command-processing loop.
+     * </p>
      */
     public void start() {
         Path deliveryCarPath = Paths.get(yamlConfigFileLoader.getDeliveryCarPath());
@@ -64,10 +111,19 @@ public class GalleryOrganizer {
     }
 
     /**
-     * Decides which action to take based on user input.
+     * Parses and dispatches user input commands.
      *
-     * @param input       The raw user input
-     * @param deliveryCar The source deliveryCar path
+     * <p>
+     * Supported commands include:
+     * </p>
+     * <ul>
+     *   <li>{@code reload} - Reload YAML configuration</li>
+     *   <li>{@code open -s [alias]} - Open mapped directory in system explorer</li>
+     *   <li>{@code [alias]} - Batch move files using alias mapping</li>
+     * </ul>
+     *
+     * @param input       raw user input string
+     * @param deliveryCar source directory containing incoming assets
      */
     private void processUserCommand(String input, Path deliveryCar) {
         if (input.isEmpty()) return;
@@ -97,7 +153,15 @@ public class GalleryOrganizer {
     }
 
     /**
-     * Configures and starts the WatchService daemon thread.
+     * Starts a daemon thread that monitors the given directory
+     * for newly created files.
+     *
+     * <p>
+     * The monitor uses {@link WatchService} and reports new arrivals
+     * asynchronously to the console.
+     * </p>
+     *
+     * @param path directory to monitor
      */
     private void startBackgroundMonitor(Path path) {
         Thread monitorThread = new Thread(() -> {
@@ -122,10 +186,15 @@ public class GalleryOrganizer {
     }
 
     /**
-     * Drains events from the WatchKey and updates the console UI.
-     * * @param key          The current active WatchKey
+     * Processes filesystem watch events and updates the console UI.
      *
-     * @param watchService The existing WatchService instance to reuse
+     * <p>
+     * This method drains all pending {@link WatchKey} events and
+     * prints notifications for newly created files.
+     * </p>
+     *
+     * @param key           active WatchKey returned by WatchService
+     * @param watchService  watch service instance used to poll additional keys
      */
     private void processWatchEvents(WatchKey key, WatchService watchService) {
         // 1. Move cursor to start of line to "hide" the prompt
@@ -152,7 +221,10 @@ public class GalleryOrganizer {
     }
 
     /**
-     * Scans the deliveryCar directory for regular files.
+     * Scans the delivery directory for regular files.
+     *
+     * @param deliveryCar directory to scan
+     * @return list of regular files found in the directory
      */
     private List<Path> scanDeliveryCar(Path deliveryCar) {
         List<Path> files = new ArrayList<>();
@@ -167,7 +239,11 @@ public class GalleryOrganizer {
     }
 
     /**
-     * Executes the file moving logic.
+     * Moves all scanned files to the destination directory
+     * resolved by the given command alias.
+     *
+     * @param files list of files to move
+     * @param cmd   command alias mapped to a destination directory
      */
     private void handleBatchMove(List<Path> files, String cmd) {
         String targetDirStr = yamlConfigFileLoader.getDestPath(cmd);
@@ -192,7 +268,10 @@ public class GalleryOrganizer {
     }
 
     /**
-     * Handles directory opening logic.
+     * Opens the directory associated with the given alias
+     * using the system file explorer.
+     *
+     * @param alias directory alias defined in YAML configuration
      */
     private void handleOpenFolder(String alias) {
         String pathStr = yamlConfigFileLoader.getDestPath(alias);
