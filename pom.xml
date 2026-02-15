@@ -8,6 +8,7 @@
         <version>4.0.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.jacob</groupId>
     <artifactId>pix-organizer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -22,8 +23,8 @@
         <developer/>
     </developers>
     <modules>
-        <module>po-core</module>
-        <module>po-client</module>
+        <module>po-service</module>
+        <module>po-starter</module>
     </modules>
     <scm>
         <connection/>
@@ -34,6 +35,7 @@
     <properties>
         <java.version>17</java.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
