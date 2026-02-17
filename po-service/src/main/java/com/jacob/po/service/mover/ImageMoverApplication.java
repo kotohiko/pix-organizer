@@ -1,9 +1,14 @@
 package com.jacob.po.service.mover;
 
-import com.jacob.po.service.common.config.YamlConfigFileLoader;
+import com.jacob.po.service.mover.config.YamlConfigFileLoader;
+import com.jacob.po.service.mover.cmd.CommandContext;
 import com.jacob.po.service.mover.cmd.CommandHandler;
+import com.jacob.po.service.mover.cmd.CommandRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -12,12 +17,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
- * {@link GalleryMoverApplication} is a lightweight CLI-based asset organizing tool.
+ * {@link ImageMoverApplication} is a lightweight CLI-based asset organizing tool.
  *
  * <p>
  * It continuously monitors a configured "delivery car" directory using
@@ -37,53 +40,20 @@ import java.util.Map;
  * @author Kotohiko
  * @since Jan 25, 2026
  */
-public class GalleryMoverApplication {
+@Component
+public class ImageMoverApplication {
 
-    /**
-     * Logger for application lifecycle and error reporting
-     */
-    private static final Logger logger = LoggerFactory.getLogger(GalleryMoverApplication.class);
-
-    /**
-     * Console prompt prefix
-     */
+    private static final Logger logger = LoggerFactory.getLogger(ImageMoverApplication.class);
     private static final String PROMPT = ">> ";
 
-    /**
-     * Absolute or project-relative path to the YAML configuration file
-     * that defines command-to-destination mappings.
-     */
-    private static final String WH_GUIDE_CONFIG_PATH =
-            "po-service/src/main/resources/delivery-guide-config.yaml";
+    @Autowired
+    private YamlConfigFileLoader yamlConfigFileLoader;
 
-    /**
-     * YAML configuration loader responsible for resolving aliases
-     * to actual filesystem paths.
-     */
-    private final YamlConfigFileLoader yamlConfigFileLoader;
+    @Autowired
+    private CommandRegistry commandRegistry;
 
-    private final Map<String, CommandHandler> commandMap = new HashMap<>();
-
-    /**
-     * Creates a GalleryOrganizer instance and loads the YAML configuration.
-     *
-     * <p>
-     * The configuration file is loaded eagerly during construction.
-     * </p>
-     *
-     * @throws RuntimeException if the configuration file cannot be loaded
-     */
-    public GalleryMoverApplication() {
-        this.yamlConfigFileLoader = new YamlConfigFileLoader();
-        this.yamlConfigFileLoader.load(WH_GUIDE_CONFIG_PATH);
-        this.initCommands();
-    }
-
-    private void initCommands() {
-        commandMap.put("check", (input, path) -> reportDeliveryCarCount());
-        commandMap.put("list", (input, path) -> reportDeliveryCarCount());
-        commandMap.put("ls", (input, path) -> reportDeliveryCarCount());
-    }
+    @Value("${app.config.path}")
+    private String whGuideConfigPath;
 
     /**
      * Starts the application.
@@ -95,7 +65,16 @@ public class GalleryMoverApplication {
      * </p>
      */
     public void start() {
-        Path deliveryCarPath = Paths.get(yamlConfigFileLoader.getDeliveryCarPath());
+        yamlConfigFileLoader.load(whGuideConfigPath);
+        String carPathStr = yamlConfigFileLoader.getDeliveryCarPath();
+        if (carPathStr == null) {
+            logger.error("❌ 启动失败：无法加载配置或配置文件中缺少 'delivery_car' 路径！");
+            // 优雅退出，防止后续 Paths.get(null) 导致崩溃
+            return;
+        }
+
+        Path deliveryCarPath = Paths.get(carPathStr);
+        CommandContext context = new CommandContext(yamlConfigFileLoader);
 
         this.startBackgroundMonitor(deliveryCarPath);
         this.printWelcomeMessage();
@@ -116,9 +95,9 @@ public class GalleryMoverApplication {
                     if ("exit".equalsIgnoreCase(command)) {
                         running = false;
                     } else {
-                        CommandHandler handler = commandMap.get(command.toLowerCase());
+                        CommandHandler handler = commandRegistry.get(command);
                         if (handler != null) {
-                            handler.execute(command, deliveryCarPath);
+                            handler.execute(command, context);
                         } else {
                             this.processUserCommand(command, deliveryCarPath);
                         }
@@ -150,7 +129,7 @@ public class GalleryMoverApplication {
         if (input.isEmpty()) return;
 
         if ("reload".equalsIgnoreCase(input)) {
-            yamlConfigFileLoader.load(WH_GUIDE_CONFIG_PATH);
+            yamlConfigFileLoader.load(whGuideConfigPath);
             return;
         }
 
@@ -314,18 +293,8 @@ public class GalleryMoverApplication {
             Desktop.getDesktop().open(folder);
             logger.info("Opened directory: {}", pathStr);
         } catch (Exception e) {
-            logger.error("Failed to open folder: {}", e.getMessage());
+            logger.error("Failed to open folder: {} {}", e.getMessage(),e.getClass());
         }
-    }
-
-    /**
-     * Reports the current total number of files in the delivery car.
-     */
-    private void reportDeliveryCarCount() {
-        Path deliveryCar = Paths.get(yamlConfigFileLoader.getDeliveryCarPath());
-        List<Path> files = scanDeliveryCar(deliveryCar);
-
-        System.out.println("[Status] Current file count: " + files.size());
     }
 
     /**

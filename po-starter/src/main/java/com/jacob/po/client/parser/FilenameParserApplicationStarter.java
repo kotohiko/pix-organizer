@@ -3,6 +3,7 @@ package com.jacob.po.client.parser;
 import com.jacob.po.service.parser.service.IFilenameParserService;
 import com.jacob.po.service.parser.service.impl.FilenameParserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -19,6 +20,7 @@ import java.net.URISyntaxException;
  * @since Dec 07, 2025
  **/
 @Slf4j
+@SpringBootApplication
 public class FilenameParserApplicationStarter {
 
     public static void main(String[] args) throws IOException {
