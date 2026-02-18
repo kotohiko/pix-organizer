@@ -1,0 +1,4 @@
+app.config.path: po-service/src/main/resources/delivery-guide-config.yaml
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %5p --- %-40logger{39} : %m%n"

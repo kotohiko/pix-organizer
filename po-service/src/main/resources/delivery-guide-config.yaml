@@ -4,8 +4,8 @@ delivery_car: S:/po-assets/gallery/delivery
 # 指令映射关系 (指令: 目标路径)
 # 建议使用正斜杠 /，Java 在 Windows 下也能完美识别
 mappings:
-  ###################################### 二次元世界 ######################################
-  # 原神
+  ###################################### 二次元世界 #############################################
+  # 原神 Genshin Impact ########################################################################
   ## 璃月
   甘雨: S:/po-assets/gallery/二次元/原神/甘雨
   ganyu: S:/po-assets/gallery/二次元/原神/甘雨
@@ -17,13 +17,23 @@ mappings:
   珊瑚宫心海: S:/po-assets/gallery/二次元/原神/珊瑚宫心海
   ## 须弥
   nahida: S:/po-assets/gallery/二次元/原神/纳西妲
+  Nahida: S:/po-assets/gallery/二次元/原神/纳西妲
   纳西妲: S:/po-assets/gallery/二次元/原神/纳西妲
   草神: S:/po-assets/gallery/二次元/原神/纳西妲
   小吉祥草王: S:/po-assets/gallery/二次元/原神/纳西妲
+  ## 枫丹
+  芙宁娜: S:/po-assets/gallery/二次元/原神/芙宁娜
+  芙卡洛斯: S:/po-assets/gallery/二次元/原神/芙宁娜
+  furina: S:/po-assets/gallery/二次元/原神/芙宁娜
+  focalors: S:/po-assets/gallery/二次元/原神/芙宁娜
+  Furina: S:/po-assets/gallery/二次元/原神/芙宁娜
+  Focalors: S:/po-assets/gallery/二次元/原神/芙宁娜
   ## 挪德卡莱
   columbina: S:/po-assets/gallery/二次元/原神/哥伦比娅
+  Columbina: S:/po-assets/gallery/二次元/原神/哥伦比娅
+  哥伦比娅: S:/po-assets/gallery/二次元/原神/哥伦比娅
 
-  # 蔚蓝档案
+  # 蔚蓝档案 Blue Archive #########################################################################
   BA: S:/po-assets/gallery/二次元/蔚蓝档案
   ba: S:/po-assets/gallery/二次元/蔚蓝档案
   Ba: S:/po-assets/gallery/二次元/蔚蓝档案
@@ -54,28 +64,45 @@ mappings:
   百合园圣娅: S:/po-assets/gallery/二次元/蔚蓝档案/崔尼蒂综合学院/茶会/百合园圣娅
 
   ## 歌赫娜学院
+  ### 风纪委员会
+  日奈: S:/po-assets/gallery/二次元/蔚蓝档案/歌赫娜学院/风纪委员会/空崎日奈
+  空崎日奈: S:/po-assets/gallery/二次元/蔚蓝档案/歌赫娜学院/风纪委员会/空崎日奈
+  Hina: S:/po-assets/gallery/二次元/蔚蓝档案/歌赫娜学院/风纪委员会/空崎日奈
+  hina: S:/po-assets/gallery/二次元/蔚蓝档案/歌赫娜学院/风纪委员会/空崎日奈
   ### 万魔殿
   枣伊吕波: S:/po-assets/gallery/二次元/蔚蓝档案/歌赫娜学院/万魔殿/枣伊吕波
   丹花伊吹: S:/po-assets/gallery/二次元/蔚蓝档案/歌赫娜学院/万魔殿/丹花伊吹
+  ### 便利屋68
+  佳代子: S:/po-assets/gallery/二次元/蔚蓝档案/歌赫娜学院/便利屋68/鬼方佳代子
+  鬼方佳代子: S:/po-assets/gallery/二次元/蔚蓝档案/歌赫娜学院/便利屋68/鬼方佳代子
 
   ## 百鬼夜行联合学院
-  桐生桔梗: S:/po-assets/gallery/二次元/蔚蓝档案/百鬼夜行联合学院/桐生桔梗
+  ### 百花缭乱纷争调停委员会
+  桐生桔梗: S:/po-assets/gallery/二次元/蔚蓝档案/百鬼夜行联合学院/百花缭乱纷争调停委员会/桐生桔梗
+  ### 花鸟风月部
+  箭吹棕榈: S:/po-assets/gallery/二次元/蔚蓝档案/百鬼夜行联合学院/花鸟风月部/箭吹棕榈
 
   ## 山海经高级中学
-  kiki: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/龙华妃咲
-  kisaki: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/龙华妃咲
-  Kisaki: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/龙华妃咲
-  妃咲: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/龙华妃咲
-  龙华妃咲: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/龙华妃咲
-  门主: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/龙华妃咲
-  门主大人: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/龙华妃咲
+  ### 玄龙门
+  kiki: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/玄龙门/龙华妃咲
+  kisaki: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/玄龙门/龙华妃咲
+  Kisaki: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/玄龙门/龙华妃咲
+  妃咲: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/玄龙门/龙华妃咲
+  龙华妃咲: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/玄龙门/龙华妃咲
+  门主: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/玄龙门/龙华妃咲
+  门主大人: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/玄龙门/龙华妃咲
+  ### 梅花园
+  kokona: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/梅花园/春原心奈
+  Kokona: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/梅花园/春原心奈
+  心奈: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/梅花园/春原心奈
+  春原心奈: S:/po-assets/gallery/二次元/蔚蓝档案/山海经高级中学/梅花园/春原心奈
 
   ## 海兰德铁道学院
   橘光: S:/po-assets/gallery/二次元/蔚蓝档案/海兰德铁道学院/橘光 & 橘望
   橘望: S:/po-assets/gallery/二次元/蔚蓝档案/海兰德铁道学院/橘光 & 橘望
   铁道双子: S:/po-assets/gallery/二次元/蔚蓝档案/海兰德铁道学院/橘光 & 橘望
 
-  # 崩坏：星穹铁道
+  # 崩坏：星穹铁道 ############################################################################
   花火: S:/po-assets/gallery/二次元/崩坏：星穹铁道/花火
   Hanabi: S:/po-assets/gallery/二次元/崩坏：星穹铁道/花火
   hanabi: S:/po-assets/gallery/二次元/崩坏：星穹铁道/花火
@@ -86,6 +113,10 @@ mappings:
   yunli: S:/po-assets/gallery/二次元/崩坏：星穹铁道/云璃
   Yunli: S:/po-assets/gallery/二次元/崩坏：星穹铁道/云璃
 
+  # 千恋万花 ############################################################################
+  Murasame: S:/po-assets/gallery/二次元/千恋万花/丛雨
+  murasame: S:/po-assets/gallery/二次元/千恋万花/丛雨
+  丛雨: S:/po-assets/gallery/二次元/千恋万花/丛雨
   ###################################### 三次元世界 ######################################
   日本古风: S:/po-assets/gallery/三次元/日本古风
   鞍马寺: S:/po-assets/gallery/三次元/日本古风/鞍马寺

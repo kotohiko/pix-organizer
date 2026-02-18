@@ -1,11 +1,10 @@
 package com.jacob.po.service.mover;
 
-import com.jacob.po.service.mover.config.YamlConfigFileLoader;
 import com.jacob.po.service.mover.cmd.CommandContext;
 import com.jacob.po.service.mover.cmd.CommandHandler;
 import com.jacob.po.service.mover.cmd.CommandRegistry;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.jacob.po.service.mover.config.YamlConfigFileLoader;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -28,22 +27,21 @@ import java.util.List;
  * </p>
  *
  * <ul>
- *   <li>Batch move newly delivered image files to destination folders via command aliases</li>
- *   <li>Quickly open configured target directories using system file explorer</li>
- *   <li>Reload YAML-based command-to-path mappings at runtime</li>
+ * <li>Batch move newly delivered image files to destination folders via command aliases</li>
+ * <li>Quickly open configured target directories using system file explorer</li>
+ * <li>Reload YAML-based command-to-path mappings at runtime</li>
  * </ul>
- *
- * <p>
- * This class acts as the application entry point and command dispatcher.
- * </p>
  *
  * @author Kotohiko
  * @since Jan 25, 2026
  */
+@Slf4j
 @Component
 public class ImageMoverApplication {
 
-    private static final Logger logger = LoggerFactory.getLogger(ImageMoverApplication.class);
+    /**
+     * The prompt string displayed to the user in the CLI.
+     */
     private static final String PROMPT = ">> ";
 
     @Autowired
@@ -57,78 +55,72 @@ public class ImageMoverApplication {
 
     /**
      * Starts the application.
-     *
      * <p>
-     * This method initializes the background directory monitor,
-     * prints the welcome banner, and enters the interactive
-     * command-processing loop.
+     * Performs initial configuration loading, starts the background file system monitor,
+     * and enters the main interactive command loop.
      * </p>
      */
     public void start() {
         yamlConfigFileLoader.load(whGuideConfigPath);
         String carPathStr = yamlConfigFileLoader.getDeliveryCarPath();
-        if (carPathStr == null) {
-            logger.error("❌ 启动失败：无法加载配置或配置文件中缺少 'delivery_car' 路径！");
-            // 优雅退出，防止后续 Paths.get(null) 导致崩溃
+
+        if (carPathStr == null || carPathStr.isBlank()) {
+            log.error("Startup failed: Configuration is missing or 'delivery_car' path is not defined.");
             return;
         }
 
-        Path deliveryCarPath = Paths.get(carPathStr);
+        Path deliveryCarPath = Path.of(carPathStr);
         CommandContext context = new CommandContext(yamlConfigFileLoader);
 
         this.startBackgroundMonitor(deliveryCarPath);
         this.printWelcomeMessage();
-        this.reportDeliveryCarCountV2();
-
-        boolean running = true;
+        this.reportDeliveryCarCount();
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            boolean running = true;
             while (running) {
                 System.out.print("\n" + PROMPT);
                 String input = reader.readLine();
 
-                if (input == null) {
+                if (input == null || "exit".equalsIgnoreCase(input.trim()) || "quit".equalsIgnoreCase(input.trim())) {
                     running = false;
+                    log.info("Terminating application...");
                 } else {
-                    String command = input.trim();
-
-                    if ("exit".equalsIgnoreCase(command)) {
-                        running = false;
-                    } else {
-                        CommandHandler handler = commandRegistry.get(command);
-                        if (handler != null) {
-                            handler.execute(command, context);
-                        } else {
-                            this.processUserCommand(command, deliveryCarPath);
-                        }
-                    }
+                    processInput(input.trim(), context, deliveryCarPath);
                 }
             }
         } catch (IOException e) {
-            logger.error("System I/O error: {}", e.getMessage());
+            log.error("System I/O error occurred during the main execution loop: {}", e.getMessage());
         }
     }
 
+    /**
+     * Routes user input to the appropriate handler or internal command logic.
+     *
+     * @param command         The raw command string entered by the user.
+     * @param context         The command context for execution.
+     * @param deliveryCarPath The current delivery car path.
+     */
+    private void processInput(String command, CommandContext context, Path deliveryCarPath) {
+        CommandHandler handler = commandRegistry.get(command);
+        if (handler != null) {
+            handler.execute(command, context);
+        } else {
+            this.processUserCommand(command, deliveryCarPath);
+        }
+    }
 
     /**
-     * Parses and dispatches user input commands.
+     * Handles built-in commands like 'reload' and 'open' or delegates to the move logic.
      *
-     * <p>
-     * Supported commands include:
-     * </p>
-     * <ul>
-     *   <li>{@code reload} - Reload YAML configuration</li>
-     *   <li>{@code open -s [alias]} - Open mapped directory in system explorer</li>
-     *   <li>{@code [alias]} - Batch move files using alias mapping</li>
-     * </ul>
-     *
-     * @param input       raw user input string
-     * @param deliveryCar source directory containing incoming assets
+     * @param input       The command string.
+     * @param deliveryCar The path to the delivery directory.
      */
     private void processUserCommand(String input, Path deliveryCar) {
         if (input.isEmpty()) return;
 
         if ("reload".equalsIgnoreCase(input)) {
+            log.info("Reloading configuration from source...");
             yamlConfigFileLoader.load(whGuideConfigPath);
             return;
         }
@@ -141,44 +133,39 @@ public class ImageMoverApplication {
     }
 
     /**
-     * Coordinates the file scanning and moving process.
+     * Scans the delivery directory and initiates a batch move if files are present.
+     *
+     * @param cmd         The command alias representing the destination.
+     * @param deliveryCar The source directory to scan.
      */
     private void handleMoveSequence(String cmd, Path deliveryCar) {
         List<Path> files = scanDeliveryCar(deliveryCar);
         if (files.isEmpty()) {
-            System.out.println("[Info] Delivery car is empty. No files to move.");
+            log.info("No files found in delivery car. Movement sequence aborted.");
             return;
         }
         this.handleBatchMove(files, cmd);
     }
 
     /**
-     * Starts a daemon thread that monitors the given directory
-     * for newly created files.
+     * Initializes and starts a daemon thread to watch for file creation events.
      *
-     * <p>
-     * The monitor uses {@link WatchService} and reports new arrivals
-     * asynchronously to the console.
-     * </p>
-     *
-     * @param path directory to monitor
+     * @param path The directory path to monitor for changes.
      */
     private void startBackgroundMonitor(Path path) {
         Thread monitorThread = new Thread(() -> {
-            // Create the service once and ensure it closes automatically
             try (WatchService watchService = FileSystems.getDefault().newWatchService()) {
                 path.register(watchService, StandardWatchEventKinds.ENTRY_CREATE);
 
                 while (!Thread.currentThread().isInterrupted()) {
-                    // Block until at least one event is available
                     WatchKey key = watchService.take();
-                    // Pass the existing watchService to the processing method
                     this.processWatchEvents(key, watchService);
                 }
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt(); // Restore interrupted status
+                Thread.currentThread().interrupt();
+                log.info("Background monitor service has been interrupted.");
             } catch (Exception e) {
-                logger.error("Background monitor failure: {}", e.getMessage());
+                log.error("Background monitor encountered an unexpected failure: {}", e.getMessage());
             }
         });
         monitorThread.setDaemon(true);
@@ -186,18 +173,12 @@ public class ImageMoverApplication {
     }
 
     /**
-     * Processes filesystem watch events and updates the console UI.
+     * Processes events polled from the WatchService.
      *
-     * <p>
-     * This method drains all pending {@link WatchKey} events and
-     * prints notifications for newly created files.
-     * </p>
-     *
-     * @param key          active WatchKey returned by WatchService
-     * @param watchService watch service instance used to poll additional keys
+     * @param key          The current active WatchKey.
+     * @param watchService The WatchService instance for additional polling.
      */
     private void processWatchEvents(WatchKey key, WatchService watchService) {
-        // 1. Move cursor to start of line to "hide" the prompt
         System.out.print("\r");
         boolean hasNewFile = false;
 
@@ -205,85 +186,79 @@ public class ImageMoverApplication {
         while (currentKey != null) {
             for (WatchEvent<?> event : currentKey.pollEvents()) {
                 if (event.kind() == StandardWatchEventKinds.ENTRY_CREATE) {
-                    System.out.println("[Notification] New asset arrived: " + event.context());
+                    System.out.println("[Notification] New asset detected: " + event.context());
                     hasNewFile = true;
                 }
             }
-
-            // Reset the key and check if it's still valid
             if (!currentKey.reset()) break;
-
-            // 2. IMPORTANT: Reuse the existing watchService to poll for more pending keys
             currentKey = watchService.poll();
         }
 
-        // ⭐ 核心：有新文件 → 重新扫描并报告
         if (hasNewFile) {
-            this.reportDeliveryCarCountV2();
+            this.reportDeliveryCarCount();
         }
 
-        // 3. Restore the prompt
         System.out.print(PROMPT);
         System.out.flush();
     }
 
     /**
-     * Scans the delivery directory for regular files.
+     * Scans the directory for regular files (excluding subdirectories).
      *
-     * @param deliveryCar directory to scan
-     * @return list of regular files found in the directory
+     * @param deliveryCar The directory to scan.
+     * @return A list of paths for the files found.
      */
     private List<Path> scanDeliveryCar(Path deliveryCar) {
         List<Path> files = new ArrayList<>();
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(deliveryCar)) {
             for (Path entry : stream) {
-                if (Files.isRegularFile(entry)) files.add(entry);
+                if (Files.isRegularFile(entry)) {
+                    files.add(entry);
+                }
             }
         } catch (IOException e) {
-            logger.error("Failed to scan delivery car: {}", e.getMessage());
+            log.error("Could not scan delivery car: {}", e.getMessage());
         }
         return files;
     }
 
     /**
-     * Moves all scanned files to the destination directory
-     * resolved by the given command alias.
+     * Moves a list of files to a destination mapped by the given command.
      *
-     * @param files list of files to move
-     * @param cmd   command alias mapped to a destination directory
+     * @param files The list of files to be moved.
+     * @param cmd   The alias mapped to the destination path.
      */
     private void handleBatchMove(List<Path> files, String cmd) {
         String targetDirStr = yamlConfigFileLoader.getDestPath(cmd);
         if (targetDirStr == null) {
-            logger.warn("Invalid command [{}]: No mapping found in config.yaml", cmd);
+            log.warn("Invalid alias [{}]: No mapping exists in configuration.", cmd);
             return;
         }
 
-        Path targetDir = Paths.get(targetDirStr);
+        Path targetDir = Path.of(targetDirStr);
         try {
             ensureDirectoryExists(targetDir);
-            int success = 0;
+            int count = 0;
 
             for (Path source : files) {
                 Files.move(source, targetDir.resolve(source.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-                ++success;
+                count++;
             }
-            logger.info("Batch move completed: {} files moved to [{}]", success, targetDir.getFileName());
+            log.info("Success: {} files moved to destination [{}]", count, targetDir.getFileName());
         } catch (IOException e) {
-            logger.error("File move operation failed: {}", e.getMessage());
+            log.error("File transfer failed: {}", e.getMessage());
         }
     }
 
     /**
-     * Opens the directory associated with the given alias
-     * using the system file explorer.
+     * Opens the destination folder in the OS file explorer.
      *
-     * @param alias directory alias defined in YAML configuration
+     * @param alias The mapping key for the folder path.
      */
     private void handleOpenFolder(String alias) {
         String pathStr = yamlConfigFileLoader.getDestPath(alias);
         if (pathStr == null) {
-            logger.warn("Alias [{}] not found in configuration", alias);
+            log.warn("Cannot open folder: Alias [{}] not recognized.", alias);
             return;
         }
 
@@ -291,43 +266,48 @@ public class ImageMoverApplication {
             File folder = new File(pathStr);
             ensureDirectoryExists(folder.toPath());
             Desktop.getDesktop().open(folder);
-            logger.info("Opened directory: {}", pathStr);
+            log.info("System explorer triggered for path: {}", pathStr);
         } catch (Exception e) {
-            logger.error("Failed to open folder: {} {}", e.getMessage(),e.getClass());
+            log.error("Failed to launch system explorer: {} ({})", e.getMessage(), e.getClass().getSimpleName());
         }
     }
 
     /**
-     * Reports the current total number of files in the delivery car.
+     * Logs and prints the current file count within the delivery car directory.
      */
-    private void reportDeliveryCarCountV2() {
-        Path deliveryCar = Paths.get(yamlConfigFileLoader.getDeliveryCarPath());
-        List<Path> files = scanDeliveryCar(deliveryCar);
+    private void reportDeliveryCarCount() {
+        String carPath = yamlConfigFileLoader.getDeliveryCarPath();
+        if (carPath == null) return;
 
-        System.out.println("[Status] Delivery car updated");
-        System.out.println("[Status] Current file count: " + files.size());
+        List<Path> files = scanDeliveryCar(Path.of(carPath));
+        System.out.println("[Status] Inventory Update - Current file count: " + files.size());
     }
 
-
+    /**
+     * Ensures that the specified directory exists, creating it if necessary.
+     *
+     * @param path The directory path to check/create.
+     * @throws IOException If directory creation fails.
+     */
     private void ensureDirectoryExists(Path path) throws IOException {
         if (!Files.exists(path)) {
             Files.createDirectories(path);
         }
     }
 
+    /**
+     * Prints the application's visual welcome banner and command help to the console.
+     */
     private void printWelcomeMessage() {
         String line = "=============================================================";
         System.out.println(line);
-        System.out.println("              Gallery Organizer Started");
+        System.out.println("              Gallery Organizer Engine Active");
         System.out.println(line);
-        System.out.println();
-
-        System.out.println("Available Commands:");
-        System.out.println("  alias <name>      - move");
-        System.out.println("  open -s <alias>   - view");
-        System.out.println("  reload            - sync");
-        System.out.println("  exit | quit       - Exit application");
+        System.out.println("User Guide:");
+        System.out.println("  [alias]           -> Batch move files to destination");
+        System.out.println("  open -s [alias]   -> Open folder in file explorer");
+        System.out.println("  reload            -> Refresh configuration mappings");
+        System.out.println("  exit | quit       -> Terminate the application");
         System.out.println();
     }
-
 }
