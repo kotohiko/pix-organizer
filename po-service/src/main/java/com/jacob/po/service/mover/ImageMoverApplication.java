@@ -86,7 +86,7 @@ public class ImageMoverApplication {
                     running = false;
                     log.info("Terminating application...");
                 } else {
-                    processInput(input.trim(), context, deliveryCarPath);
+                    this.processInput(input.trim(), context, deliveryCarPath);
                 }
             }
         } catch (IOException e) {
@@ -280,7 +280,7 @@ public class ImageMoverApplication {
         if (carPath == null) return;
 
         List<Path> files = scanDeliveryCar(Path.of(carPath));
-        System.out.println("[Status] Inventory Update - Current file count: " + files.size());
+        System.out.print("[Status] Inventory Update - Current file count: " + files.size() + "\n");
     }
 
     /**

@@ -22,12 +22,19 @@ mappings:
   草神: S:/po-assets/gallery/二次元/原神/纳西妲
   小吉祥草王: S:/po-assets/gallery/二次元/原神/纳西妲
   ## 枫丹
-  芙宁娜: S:/po-assets/gallery/二次元/原神/芙宁娜
-  芙卡洛斯: S:/po-assets/gallery/二次元/原神/芙宁娜
-  furina: S:/po-assets/gallery/二次元/原神/芙宁娜
-  focalors: S:/po-assets/gallery/二次元/原神/芙宁娜
-  Furina: S:/po-assets/gallery/二次元/原神/芙宁娜
-  Focalors: S:/po-assets/gallery/二次元/原神/芙宁娜
+  芙宁娜: S:/po-assets/gallery/二次元/原神/枫丹/芙宁娜
+  芙卡洛斯: S:/po-assets/gallery/二次元/原神/枫丹/芙宁娜
+  furina: S:/po-assets/gallery/二次元/原神/枫丹/芙宁娜
+  focalors: S:/po-assets/gallery/二次元/原神/枫丹/芙宁娜
+  Furina: S:/po-assets/gallery/二次元/原神/枫丹/芙宁娜
+  Focalors: S:/po-assets/gallery/二次元/原神/枫丹/芙宁娜
+  希格雯: S:/po-assets/gallery/二次元/原神/枫丹/希格雯
+  ## 纳塔
+  mualani: S:/po-assets/gallery/二次元/原神/纳塔/玛拉妮
+  Mualani: S:/po-assets/gallery/二次元/原神/纳塔/玛拉妮
+  玛拉妮: S:/po-assets/gallery/二次元/原神/纳塔/玛拉妮
+  麻辣妮: S:/po-assets/gallery/二次元/原神/纳塔/玛拉妮
+  麻辣妮儿: S:/po-assets/gallery/二次元/原神/纳塔/玛拉妮
   ## 挪德卡莱
   columbina: S:/po-assets/gallery/二次元/原神/哥伦比娅
   Columbina: S:/po-assets/gallery/二次元/原神/哥伦比娅
@@ -53,9 +60,11 @@ mappings:
   Hoshino: S:/po-assets/gallery/二次元/蔚蓝档案/阿拜多斯高级中学/小鸟游星野
 
   ## 千禧年科技学院
+  ### 游戏开发部
   aris: S:/po-assets/gallery/二次元/蔚蓝档案/千禧年科技学院/游戏开发部/天童爱丽丝
   Aris: S:/po-assets/gallery/二次元/蔚蓝档案/千禧年科技学院/游戏开发部/天童爱丽丝
   天童爱丽丝: S:/po-assets/gallery/二次元/蔚蓝档案/千禧年科技学院/游戏开发部/天童爱丽丝
+  花冈柚子: S:/po-assets/gallery/二次元/蔚蓝档案/千禧年科技学院/游戏开发部/花冈柚子
 
   ## 崔尼蒂综合学院
   seia: S:/po-assets/gallery/二次元/蔚蓝档案/崔尼蒂综合学院/茶会/百合园圣娅
@@ -113,6 +122,10 @@ mappings:
   yunli: S:/po-assets/gallery/二次元/崩坏：星穹铁道/云璃
   Yunli: S:/po-assets/gallery/二次元/崩坏：星穹铁道/云璃
 
+  # 崩坏3 Honkai Impact 3rd ###############################################################
+  griseo: S:/po-assets/gallery/二次元/崩坏3/格蕾修
+  Griseo: S:/po-assets/gallery/二次元/崩坏3/格蕾修
+  格蕾修: S:/po-assets/gallery/二次元/崩坏3/格蕾修
   # 千恋万花 ############################################################################
   Murasame: S:/po-assets/gallery/二次元/千恋万花/丛雨
   murasame: S:/po-assets/gallery/二次元/千恋万花/丛雨
@@ -122,4 +135,3 @@ mappings:
   鞍马寺: S:/po-assets/gallery/三次元/日本古风/鞍马寺
   银山温泉: S:/po-assets/gallery/三次元/日本古风/银山温泉
   日本都市: S:/po-assets/gallery/三次元/日本都市
-
