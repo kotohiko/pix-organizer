@@ -79,7 +79,7 @@ public class ImageMoverApplication {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             boolean running = true;
             while (running) {
-                System.out.print("\n" + PROMPT);
+                System.out.print(PROMPT);
                 String input = reader.readLine();
 
                 if (input == null || "exit".equalsIgnoreCase(input.trim()) || "quit".equalsIgnoreCase(input.trim())) {

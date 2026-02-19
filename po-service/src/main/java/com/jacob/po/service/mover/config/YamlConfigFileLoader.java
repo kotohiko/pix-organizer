@@ -7,6 +7,7 @@ import org.yaml.snakeyaml.Yaml;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -21,18 +22,12 @@ import java.util.Map;
 @Slf4j
 public class YamlConfigFileLoader {
 
-    /**
-     * Internal map holding the parsed YAML data.
-     */
-    private Map<String, Object> config;
+    private volatile Map<String, Object> config = Collections.emptyMap();
 
     /**
-     * Loads the YAML configuration from the specified file path.
-     *
-     * @param configPath The absolute or relative path to the .yaml file.
+     * Loads or reloads YAML configuration.
      */
-    public void load(String configPath) {
-        // Check if the file exists before attempting to load
+    public synchronized void load(String configPath) {
         File file = new File(configPath);
         if (!file.exists()) {
             log.error("Configuration file not found: {}", file.getAbsolutePath());
@@ -41,36 +36,45 @@ public class YamlConfigFileLoader {
 
         try (InputStream input = new FileInputStream(file)) {
             Yaml yaml = new Yaml();
-            this.config = yaml.load(input);
-            log.info("Configuration file loaded successfully: {}", configPath);
+            Map<String, Object> loaded = yaml.load(input);
+
+            if (loaded == null) {
+                log.warn("YAML file is empty.");
+                loaded = Collections.emptyMap();
+            }
+
+            this.config = Collections.unmodifiableMap(loaded);
+
+            log.info("Configuration loaded successfully.");
+            log.info("Config identity hash: {}", System.identityHashCode(config));
+
         } catch (Exception e) {
             log.error("Failed to parse YAML file: {}", e.getMessage());
         }
     }
 
     /**
-     * Retrieves the delivery car path from the configuration.
-     *
-     * @return The path string associated with the 'delivery_car' key, or null if not loaded.
+     * Get delivery_car path dynamically.
      */
     public String getDeliveryCarPath() {
-        // config might be null if load() failed or wasn't called
-        return (config != null) ? (String) config.get("delivery_car") : null;
+        Object value = config.get("delivery_car");
+        return value != null ? value.toString() : null;
     }
 
     /**
-     * Retrieves the destination path associated with a specific command.
-     * The command is case-insensitive as it is converted to lowercase before lookup.
-     *
-     * @param command The command key to look up in the mappings.
-     * @return The corresponding destination path, or null if not found.
+     * Get destination path by alias dynamically.
      */
     @SuppressWarnings("unchecked")
-    public String getDestPath(String command) {
-        if (config == null || command == null) {
+    public String getDestPath(String alias) {
+
+        Object mappingsObj = config.get("mappings");
+        if (!(mappingsObj instanceof Map)) {
             return null;
         }
-        Map<String, String> mappings = (Map<String, String>) config.get("mappings");
-        return mappings != null ? mappings.get(command.toLowerCase()) : null;
+
+        Map<String, Object> mappings = (Map<String, Object>) mappingsObj;
+
+        Object value = mappings.get(alias);
+        return value != null ? value.toString() : null;
     }
 }
