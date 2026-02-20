@@ -20,7 +20,7 @@ import java.util.Arrays;
 public class ImageMoverRunner implements ApplicationRunner {
 
     @Autowired
-    private ImageMoverApplication app;
+    private ImageMoverApplication imageMoverApplication;
 
     /**
      * Executes the application.
@@ -41,6 +41,6 @@ public class ImageMoverRunner implements ApplicationRunner {
             log.info("Debug mode detected via command line arguments.");
         }
 
-        app.start();
+        imageMoverApplication.start();
     }
 }

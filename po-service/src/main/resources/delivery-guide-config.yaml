@@ -16,11 +16,14 @@ mappings:
   心海: S:\po-assets\gallery\二次元\原神\珊瑚宫心海
   珊瑚宫心海: S:\po-assets\gallery\二次元\原神\珊瑚宫心海
   ## 须弥
-  nahida: S:\po-assets\gallery\二次元\原神\纳西妲
-  Nahida: S:\po-assets\gallery\二次元\原神\纳西妲
-  纳西妲: S:\po-assets\gallery\二次元\原神\纳西妲
-  草神: S:\po-assets\gallery\二次元\原神\纳西妲
-  小吉祥草王: S:\po-assets\gallery\二次元\原神\纳西妲
+  nahida: S:\po-assets\gallery\二次元\原神\须弥\纳西妲
+  Nahida: S:\po-assets\gallery\二次元\原神\须弥\纳西妲
+  纳西妲: S:\po-assets\gallery\二次元\原神\须弥\纳西妲
+  草神: S:\po-assets\gallery\二次元\原神\须弥\纳西妲
+  小吉祥草王: S:\po-assets\gallery\二次元\原神\须弥\纳西妲
+  妮露: S:\po-assets\gallery\二次元\原神\须弥\妮露
+  nilou: S:\po-assets\gallery\二次元\原神\须弥\妮露
+  Nilou: S:\po-assets\gallery\二次元\原神\须弥\妮露
   ## 枫丹
   芙宁娜: S:\po-assets\gallery\二次元\原神\枫丹\芙宁娜
   芙卡洛斯: S:\po-assets\gallery\二次元\原神\枫丹\芙宁娜
@@ -125,9 +128,12 @@ mappings:
   月雪宫子: S:\po-assets\gallery\二次元\蔚蓝档案\SRT特殊学园\SRT RABBIT\月雪宫子
 
   ## 海兰德铁道学院
-  橘光: S:\po-assets\gallery\二次元\蔚蓝档案\海兰德铁道学院\橘光 & 橘望
-  橘望: S:\po-assets\gallery\二次元\蔚蓝档案\海兰德铁道学院\橘光 & 橘望
-  铁道双子: S:\po-assets\gallery\二次元\蔚蓝档案\海兰德铁道学院\橘光 & 橘望
+  橘光: S:\po-assets\gallery\二次元\蔚蓝档案\海兰德铁道学院\橘光&橘望
+  橘望: S:\po-assets\gallery\二次元\蔚蓝档案\海兰德铁道学院\橘光&橘望
+  铁道双子: S:\po-assets\gallery\二次元\蔚蓝档案\海兰德铁道学院\橘光&橘望
+
+  ## 未知势力
+  笑面教授: S:\po-assets\gallery\二次元\蔚蓝档案\未知势力\笑面教授
 
   # 崩坏：星穹铁道 ############################################################################
   ## 雅利洛-Ⅵ

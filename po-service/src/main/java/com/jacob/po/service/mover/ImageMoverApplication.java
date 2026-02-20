@@ -244,9 +244,9 @@ public class ImageMoverApplication {
                 Files.move(source, targetDir.resolve(source.getFileName()), StandardCopyOption.REPLACE_EXISTING);
                 count++;
             }
-            log.info("Success: {} files moved to destination [{}]", count, targetDir.getFileName());
+            log.info("✅ Success! >>> {} files moved to destination [{}]", count, targetDir.getFileName());
         } catch (IOException e) {
-            log.error("File transfer failed: {}", e.getMessage());
+            log.error("❌️ Failed! >>> File transfer failed: {}", e.getMessage());
         }
     }
 
