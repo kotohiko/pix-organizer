@@ -22,7 +22,7 @@ import java.util.Map;
 @Slf4j
 public class YamlConfigFileLoader {
 
-    private volatile Map<String, Object> config = Collections.emptyMap();
+    private Map<Object, Object> config = Collections.emptyMap();
 
     /**
      * Loads or reloads YAML configuration.

@@ -29,7 +29,8 @@ public class FilenameParserServiceImpl implements IFilenameParserService {
             new TwitterStrategy(),
             new DanbooruStrategy(),
             new BilibiliOpusStrategy(),
-            new BilibiliVideoStrategy()
+            new BilibiliVideoStrategy(),
+            new TiktokVideoStrategy()
     );
 
     /**
@@ -223,6 +224,38 @@ public class FilenameParserServiceImpl implements IFilenameParserService {
         public String parse(String input) {
             Matcher matcher = PATTERN.matcher(input);
             return matcher.find() ? "https://www.bilibili.com/video/" + matcher.group(1) : "";
+        }
+    }
+
+    /**
+     * Strategy for parsing TikTok video identifiers.
+     * <p>
+     * Handles inputs like {@code httpswww.tiktok.com@mapoyo_221video7548766944598478081}
+     * and normalizes them to a standard browser-executable URL.
+     * </p>
+     */
+    private static class TiktokVideoStrategy implements ParserStrategy {
+
+        /**
+         * Captures:
+         * 1. Username (e.g., mapoyo_221)
+         * 2. Video ID (e.g., 7548766944598478081)
+         */
+        private static final Pattern PATTERN = Pattern.compile(
+                "httpswww\\.tiktok\\.com@([a-zA-Z0-9._]+)video(\\d+)"
+        );
+
+        @Override
+        public boolean canHandle(String input) {
+            return PATTERN.matcher(input).find();
+        }
+
+        @Override
+        public String parse(String input) {
+            Matcher matcher = PATTERN.matcher(input);
+            return matcher.find()
+                    ? "https://www.tiktok.com/@" + matcher.group(1) + "/video/" + matcher.group(2)
+                    : "";
         }
     }
 }

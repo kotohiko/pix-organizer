@@ -49,7 +49,7 @@ public class CommandRegistry {
      * @param name    The trigger string for the command.
      * @param handler The implementation of {@link CommandHandler} to execute.
      */
-    public void register(String name, CommandHandler handler) {
+    private void register(String name, CommandHandler handler) {
         if (name == null || handler == null) {
             log.warn("Attempted to register a null command name or handler.");
             return;
