@@ -23,7 +23,7 @@ import java.net.URISyntaxException;
 @SpringBootApplication
 public class FilenameParserApplicationStarter {
 
-    public static void main(String[] args) throws IOException {
+    static void main(String[] args) throws IOException {
         // Initialize resources outside the loop for better performance
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         IFilenameParserService parserService = new FilenameParserServiceImpl();

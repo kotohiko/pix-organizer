@@ -20,14 +20,14 @@ public class CommandContext {
     /**
      * The loader responsible for reading YAML configuration files.
      */
-    @Autowired
-    private YamlConfigFileLoader configLoader;
+    private final YamlConfigFileLoader configLoader;
 
     /**
      * Constructs a new CommandContext with the specified configuration loader.
      *
      * @param configLoader The loader to be used for accessing configuration data.
      */
+    @Autowired
     public CommandContext(YamlConfigFileLoader configLoader) {
         this.configLoader = configLoader;
     }

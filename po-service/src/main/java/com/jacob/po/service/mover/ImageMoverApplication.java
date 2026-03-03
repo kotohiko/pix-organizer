@@ -299,9 +299,9 @@ public class ImageMoverApplication {
      * Prints the application's visual welcome banner and command help to the console.
      */
     private void printWelcomeMessage() {
-        String line = "=============================================================";
+        String line = "===============================================================================================================================================================";
         System.out.println(line);
-        System.out.println("              Gallery Organizer Engine Active");
+        System.out.println("                                                         Gallery Organizer Engine Active");
         System.out.println(line);
         System.out.println("User Guide:");
         System.out.println("  [alias]           -> Batch move files to destination");

@@ -19,8 +19,12 @@ import java.util.Arrays;
 @Component
 public class ImageMoverRunner implements ApplicationRunner {
 
+    private final ImageMoverApplication imageMoverApplication;
+
     @Autowired
-    private ImageMoverApplication imageMoverApplication;
+    public ImageMoverRunner(ImageMoverApplication imageMoverApplication) {
+        this.imageMoverApplication = imageMoverApplication;
+    }
 
     /**
      * Executes the application.
