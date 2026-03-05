@@ -205,25 +205,44 @@ public class FilenameParserServiceImpl implements IFilenameParserService {
     }
 
     /**
-     * Strategy for parsing Bilibili videos identifiers.
+     * Strategy for parsing Bilibili video identifiers.
      * <p>
-     * Handles inputs like {@code httpswww.bilibili.comvideoBV1xx411c7mC}
+     * Supports:
+     * <ul>
+     *     <li>{@code httpswww.bilibili.comvideoBV1xx411c7mC}</li>
+     *     <li>{@code BV1xx411c7mC}</li>
+     * </ul>
      * and normalizes them to a standard browser-executable URL.
      * </p>
      */
     private static class BilibiliVideoStrategy implements ParserStrategy {
-        // Captures Alphanumeric BV ID (e.g., BV13QzTBuE74)
-        private static final Pattern PATTERN = Pattern.compile("httpswww\\.bilibili\\.comvideo([a-zA-Z0-9]+)");
+
+        /**
+         * Matches:
+         * <ol>
+         *     <li>
+         *         Compressed form: <code>httpswww.bilibili.comvideoBVxxxx</code>
+         *     </li>
+         *     <li>
+         *         Pure BV ID: <code>BVxxxx</code>
+         *     </li>
+         * </ol>
+         */
+        private static final Pattern PATTERN = Pattern.compile(
+                "(?:httpswww\\.bilibili\\.comvideo)?(BV[a-zA-Z0-9]+)"
+        );
 
         @Override
         public boolean canHandle(String input) {
-            return PATTERN.matcher(input).find();
+            return PATTERN.matcher(input).matches();
         }
 
         @Override
         public String parse(String input) {
             Matcher matcher = PATTERN.matcher(input);
-            return matcher.find() ? "https://www.bilibili.com/video/" + matcher.group(1) : "";
+            return matcher.matches()
+                    ? "https://www.bilibili.com/video/" + matcher.group(1)
+                    : "";
         }
     }
 
