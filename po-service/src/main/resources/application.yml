@@ -1,3 +1,4 @@
+server.port: 2323
 app.config.path: po-service/src/main/resources/delivery-guide-config.yaml
 logging:
   pattern:
