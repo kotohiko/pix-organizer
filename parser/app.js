@@ -1,6 +1,6 @@
 const readline = require("readline");
 const openBrowser = require("./browser");
-const parsers = require("./parsers");
+const parsers = require("./index");
 
 // Create Readline Interface
 const rl = readline.createInterface({
@@ -42,10 +42,10 @@ rl.on("line", async (line) => {
     let result = null;
     let matchedParserName = null;
 
-    // 3. Iterate over parsers and identify which one succeeds
+    // 3. Iterate over parser and identify which one succeeds
     for (const parser of parsers) {
         try {
-            // Support both sync and async parsers
+            // Support both sync and async parser
             result = await parser.parse(input);
             if (result) {
                 matchedParserName = parser.name || parser.constructor.name || "Unnamed Parser";
