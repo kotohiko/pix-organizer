@@ -1,11 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
-const { exec } = require('child_process');
+const {exec} = require('child_process');
 
-// Load configurations
-const config = require('./config.json');
-const mappings = require('./mappings.json');
+// Load initial configurations
+let config = require('./config.json');
+let mappings = require('./mappings.json');
 
 // Kawaii Logger Helper Functions ✨
 function logInfo(msg) {
@@ -29,12 +29,37 @@ function isImageFile(filename) {
 }
 
 /**
+ * FEATURE: Reload mappings.json & config.json on the fly! 🔄✨
+ */
+function reloadConfigurations() {
+    logInfo(`Reloading configurations from disk... Standby, Sensei 🔄✨`);
+
+    const mappingsPath = path.resolve(__dirname, './mappings.json');
+    const configPath = path.resolve(__dirname, './config.json');
+
+    try {
+        // Clear Node.js require cache so it reads fresh file content
+        delete require.cache[require.resolve(mappingsPath)];
+        delete require.cache[require.resolve(configPath)];
+
+        mappings = require(mappingsPath);
+        config = require(configPath);
+
+        const count = Object.keys(mappings).length;
+        logInfo(`Configurations reloaded successfully! Loaded ${count} mapping rule(s)! Woohoo! 🎉💕`);
+    } catch (err) {
+        logError(`Failed to reload configurations! Did you leave a syntax error in mappings.json?
+         Error: ${err.message}`);
+    }
+}
+
+/**
  * Open target directory in Windows Explorer 📂✨
  */
 function openFolder(targetDir) {
     if (!fs.existsSync(targetDir)) {
         try {
-            fs.mkdirSync(targetDir, { recursive: true });
+            fs.mkdirSync(targetDir, {recursive: true});
             logInfo(`Folder didn't exist, so I created a cozy new space for you at: ${targetDir} ✨`);
         } catch (err) {
             logError(`Failed to create folder! Error: ${err.message}`);
@@ -53,7 +78,7 @@ function openFolder(targetDir) {
 }
 
 /**
- * FEATURE 1: Check how many images are currently waiting in the freight folder 📦🔍
+ * Check how many images are currently waiting in the freight folder 📦🔍
  */
 async function checkCargoHold() {
     const sourceDir = config.sourceDir;
@@ -88,8 +113,7 @@ async function checkCargoHold() {
 }
 
 /**
- * FEATURE 2: Real-time File System Watcher 👁️✨
- * Monitors the freight directory and logs when new files arrive!
+ * Real-time File System Watcher 👁️✨
  */
 function startCargoWatcher() {
     const sourceDir = config.sourceDir;
@@ -99,7 +123,6 @@ function startCargoWatcher() {
         return;
     }
 
-    // Prevents duplicate logs triggered by file-system buffering/multi-events
     const debounceMap = new Map();
 
     try {
@@ -108,16 +131,15 @@ function startCargoWatcher() {
 
             const fullPath = path.join(sourceDir, filename);
 
-            // Debounce mechanism: Ignore duplicate triggers within 500ms
             const now = Date.now();
             if (debounceMap.has(filename) && (now - debounceMap.get(filename) < 500)) {
                 return;
             }
             debounceMap.set(filename, now);
 
-            // Verify that the file actually exists (not just deleted)
             if (fs.existsSync(fullPath) && fs.statSync(fullPath).isFile()) {
-                logInfo(`[WATCHER ALERT] 🔔 Ooh! New image detected in cargo hold: "${filename}"! Ready for shipping, Master! 📦✨`);
+                logInfo(`[WATCHER ALERT] 🔔 Ooh! New image detected in cargo hold: "${filename}"!
+                 Ready for shipping, Sensei 📦✨`);
             }
         });
         logInfo(`Folder Sentinel ACTIVATED! Watching for new goodies in: ${sourceDir} 👁️💖`);
@@ -132,6 +154,14 @@ function startCargoWatcher() {
 async function dispatch(command) {
     const rawCmd = command.trim();
     const lowerCmd = rawCmd.toLowerCase();
+
+    // ----------------------------------------------------
+    // Special Command: "reload" (Refresh configurations)
+    // ----------------------------------------------------
+    if (lowerCmd === 'reload') {
+        reloadConfigurations();
+        return;
+    }
 
     // ----------------------------------------------------
     // Special Command: "check" (Check current cargo hold)
@@ -153,7 +183,7 @@ async function dispatch(command) {
             return;
         }
 
-        logInfo(`Opening folder for key: [ ${targetKey} ] ... Hold on, Master! 📂💫`);
+        logInfo(`Opening folder for key: [ ${targetKey} ] ... Hold on, Sensei 📂💫`);
         openFolder(targetDir);
         return;
     }
@@ -202,7 +232,7 @@ async function dispatch(command) {
 
     try {
         if (!fs.existsSync(targetDir)) {
-            await fs.promises.mkdir(targetDir, { recursive: true });
+            await fs.promises.mkdir(targetDir, {recursive: true});
             logInfo(`Creating a brand new cozy home at: ${targetDir} ✨`);
         }
     } catch (err) {
@@ -256,7 +286,7 @@ if (argCmd) {
     // Quick execution mode
     dispatch(argCmd);
 } else {
-    // Interactive mode with real-time folder monitoring
+    // Interactive mode
     console.log(`\n==================================================`);
     console.log(`  🌸 Anime File Delivery Express (Node.js) 🌸`);
     console.log(`==================================================`);
@@ -264,9 +294,9 @@ if (argCmd) {
     console.log(` • [ command ]      -> Ship images (e.g., kisaki)`);
     console.log(` • check            -> View files currently in cargo hold`);
     console.log(` • open [ command ] -> Open target folder (e.g., open kisaki)`);
+    console.log(` • reload           -> Reload mappings.json config on the fly 🔄`);
     console.log(` • exit             -> Say goodbye 👋\n`);
 
-    // Start watching freight directory in the background ✨
     startCargoWatcher();
 
     const rl = readline.createInterface({
@@ -275,19 +305,20 @@ if (argCmd) {
     });
 
     const promptUser = () => {
-        rl.question('\n\x1b[36mWaiting for your order, Sensei! > \x1b[0m', async (input) => {
-            const cmd = input.trim();
-            if (cmd.toLowerCase() === 'exit') {
-                logInfo('See you later, Sensei! Don\'t forget about me, okay? Bye bye! 👋💖');
-                rl.close();
-                process.exit(0);
-            }
+        rl.question('\n\x1b[36mWaiting for your order, Sensei > \x1b[0m',
+            async (input) => {
+                const cmd = input.trim();
+                if (cmd.toLowerCase() === 'exit') {
+                    logInfo('See you later, Senpai! Don\'t forget about me, okay? Bye bye! 👋💖');
+                    rl.close();
+                    process.exit(0);
+                }
 
-            if (cmd) {
-                await dispatch(cmd);
-            }
-            promptUser();
-        });
+                if (cmd) {
+                    await dispatch(cmd);
+                }
+                promptUser();
+            });
     };
 
     promptUser();
