@@ -1,4 +1,33 @@
 {
+  "freight": "S:\\po-assets\\gallery\\freight",
+
+  "////////////////////////// 蔚蓝档案 Blue Archive ブルーアーカイブ 블루아카이브 //////////////////////////": "",
+  "BA": "S:\\po-assets\\gallery\\2\\bluearchive",
+  "ba": "S:\\po-assets\\gallery\\2\\bluearchive",
+  "ブルアカ": "S:\\po-assets\\gallery\\2\\bluearchive",
+  "ブルーアーカイブ": "S:\\po-assets\\gallery\\2\\bluearchive",
+  "////////////// 阿拜多斯高等学园 アビドス高等学校 Abydos High School 아비도스 고등학교": "//////////////",
+
+  "////////////// 歌赫娜学院 ゲヘナ学園 Gehenna Academy 게헨나 학원": "//////////////",
+
+  "iroha": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\iroha",
+  "枣伊吕波": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\iroha",
+  "168": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\iroha",
+  "棗イロハ": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\iroha",
+
+  "////////////// 千禧年科技学院 ミレニアムサイエンススクール Millennium Science School 밀레니엄 사이언스 스쿨": "//////////////",
+  "aris": "S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris",
+  "天童爱丽丝": "S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris",
+  "arisu": "S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris",
+
+  "////////////// 崔尼蒂综合学园 トリニティ総合学園 Trinity General School 트리니티 종합학원": "//////////////",
+  "百合园圣娅": "S:\\po-assets\\gallery\\2\\bluearchive\\trinity\\seia",
+  "圣娅": "S:\\po-assets\\gallery\\2\\bluearchive\\trinity\\seia",
+  "seia": "S:\\po-assets\\gallery\\2\\bluearchive\\trinity\\seia",
+
+  "////////////// 百鬼夜行联合学园 百鬼夜行連合学院 Allied Hyakkiyako Academy 백귀야행 연합학원": "//////////////",
+
+  "////////////// 山海经高级中学 山海経高級中学校 Shanhaijing Secondary School 산해경고급중학교": "//////////////",
   "kisaki": "S:\\po-assets\\gallery\\2\\bluearchive\\shanhaijing\\kisaki",
   "Kisaki": "S:\\po-assets\\gallery\\2\\bluearchive\\shanhaijing\\kisaki",
   "妃咲": "S:\\po-assets\\gallery\\2\\bluearchive\\shanhaijing\\kisaki",
@@ -7,11 +36,46 @@
   "Kiki": "S:\\po-assets\\gallery\\2\\bluearchive\\shanhaijing\\kisaki",
   "门主大人": "S:\\po-assets\\gallery\\2\\bluearchive\\shanhaijing\\kisaki",
   "妾身": "S:\\po-assets\\gallery\\2\\bluearchive\\shanhaijing\\kisaki",
+  "kokona": "S:\\po-assets\\gallery\\2\\bluearchive\\shanhaijing\\kokona",
+  "春原心奈": "S:\\po-assets\\gallery\\2\\bluearchive\\shanhaijing\\kokona",
+  "心奈": "S:\\po-assets\\gallery\\2\\bluearchive\\shanhaijing\\kokona",
 
-  "aris":"S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris",
-  "天童爱丽丝":"S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris",
-  "arisu":"S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris",
+  "////////////// 赤冬联邦学园 レッドウィンター連邦学園 Red Winter Federal Academy 붉은겨울 연방학원": "//////////////",
 
-  "mika": "S:\\po-assets\\gallery\\2\\bluearchive\\trinity\\mika",
-  "arona": "S:\\po-assets\\gallery\\2\\bluearchive\\schale\\arona"
+  "////////////// 瓦尔基丽 ヴァルキューレ警察学校 Valkyrie Police School 발키리 경찰학교": "//////////////",
+
+  "////////////// SRT特殊学园 SRT特殊学園 SRT Special Academy SRT 특수학원": "//////////////",
+
+  "////////////// 阿里乌斯分校 アリウス分校 Arius Satellite School SRT 아리우스 분교": "//////////////",
+
+  "////////////// 海兰德铁道学园 ハイランダー鉄道学園 Highlander Railroad Academy SRT 하이랜더 철도학원": "//////////////",
+
+  "////////////// 狂猎艺术学园 ワイルドハント芸術学院 Wildhunt Academy of Arts 와일드헌트 예술학원": "//////////////",
+
+  "////////////// 奥德赛海洋高中 オデッセイ海洋高等学校 Odyssey Maritime School 오디세이아 해양학교": "//////////////",
+  "odyssey": "S:\\po-assets\\gallery\\2\\bluearchive\\odyssey",
+  "sayuri": "S:\\po-assets\\gallery\\2\\bluearchive\\odyssey\\sayuri",
+
+  "////////////////////////// 原神 Genshin Impact //////////////////////////": "",
+  "nahida": "S:\\po-assets\\gallery\\2\\genshin\\nahida",
+  "纳西妲": "S:\\po-assets\\gallery\\2\\genshin\\nahida",
+  "草神": "S:\\po-assets\\gallery\\2\\genshin\\nahida",
+  "小吉祥草王": "S:\\po-assets\\gallery\\2\\genshin\\nahida",
+  "ナヒーダ": "S:\\po-assets\\gallery\\2\\genshin\\nahida",
+
+  "////////////////////////// 崩坏：星穹铁道 Honkai: Star Rail": "///////////////////////////////////////////////",
+  "hanabi": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
+  "Hanabi": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
+  "花火": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
+  "はなび": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
+  "스파클": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
+  "Sparxie": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
+  "sparxie": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
+  "火花": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
+  "ひばな": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
+  "스파키": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
+
+  "/////////////// 明日方舟：终末地 Arknights: Endfield アークナイツ:エンドフィールド 명일방주: 엔드필드": "/////////////",
+  "洛茜": "S:\\po-assets\\gallery\\2\\akef\\rossi",
+  "rossi": "S:\\po-assets\\gallery\\2\\akef\\rossi"
 }

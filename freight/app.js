@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
-const {exec} = require('child_process');
+const {spawn} = require('child_process');
 
 // Load initial configurations
 let config = require('./config.json');
@@ -67,14 +67,14 @@ function openFolder(targetDir) {
         }
     }
 
-    const cmd = `explorer "${path.normalize(targetDir)}"`;
-    exec(cmd, (error) => {
-        if (error) {
-            logError(`Oopsie! Couldn't open the folder: ${error.message}`);
-        } else {
-            logInfo(`Swish! Folder opened successfully! Look look! 📂✨`);
-        }
-    });
+    const normalizedPath = path.normalize(targetDir);
+
+    spawn('explorer.exe', [normalizedPath], {
+        detached: true,
+        stdio: 'ignore'
+    }).unref();
+
+    logInfo(`Swish! Folder opened successfully! Look look! 📂✨`);
 }
 
 /**
