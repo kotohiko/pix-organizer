@@ -1,7 +1,7 @@
 {
   "freight": "S:\\po-assets\\gallery\\freight",
 
-  "////////////////////////// 蔚蓝档案 Blue Archive ブルーアーカイブ 블루아카이브 //////////////////////////": "",
+  "****************************** 蔚蓝档案 Blue Archive ブルーアーカイブ 블루아카이브 **********************************": "",
   "BA": "S:\\po-assets\\gallery\\2\\bluearchive",
   "ba": "S:\\po-assets\\gallery\\2\\bluearchive",
   "ブルアカ": "S:\\po-assets\\gallery\\2\\bluearchive",
@@ -15,7 +15,7 @@
   "168": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\iroha",
   "棗イロハ": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\iroha",
 
-  "////////////// 千禧年科技学院 ミレニアムサイエンススクール Millennium Science School 밀레니엄 사이언스 스쿨": "//////////////",
+  "////////////// 千禧年科技学院 ミレニアムサイエンススクール Millennium Science School 밀레니엄 사이언스 스쿨 /////////////": "",
   "aris": "S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris",
   "天童爱丽丝": "S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris",
   "arisu": "S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris",
@@ -56,14 +56,16 @@
   "odyssey": "S:\\po-assets\\gallery\\2\\bluearchive\\odyssey",
   "sayuri": "S:\\po-assets\\gallery\\2\\bluearchive\\odyssey\\sayuri",
 
-  "////////////////////////// 原神 Genshin Impact //////////////////////////": "",
+  "********************************* 星塔旅人 Stella Sora ステラソラ *********************************": "",
+
+  "********************************* 原神 Genshin Impact *********************************": "",
   "nahida": "S:\\po-assets\\gallery\\2\\genshin\\nahida",
   "纳西妲": "S:\\po-assets\\gallery\\2\\genshin\\nahida",
   "草神": "S:\\po-assets\\gallery\\2\\genshin\\nahida",
   "小吉祥草王": "S:\\po-assets\\gallery\\2\\genshin\\nahida",
   "ナヒーダ": "S:\\po-assets\\gallery\\2\\genshin\\nahida",
 
-  "////////////////////////// 崩坏：星穹铁道 Honkai: Star Rail": "///////////////////////////////////////////////",
+  "************************* 崩坏：星穹铁道 Honkai: Star Rail 崩壊：スターレイル 붕괴: 스타레일 *************************": "",
   "hanabi": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
   "Hanabi": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
   "花火": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
@@ -75,7 +77,7 @@
   "ひばな": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
   "스파키": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
 
-  "/////////////// 明日方舟：终末地 Arknights: Endfield アークナイツ:エンドフィールド 명일방주: 엔드필드": "/////////////",
+  "***************** 明日方舟：终末地 Arknights: Endfield アークナイツ:エンドフィールド 명일방주: 엔드필드 *****************": "",
   "洛茜": "S:\\po-assets\\gallery\\2\\akef\\rossi",
   "rossi": "S:\\po-assets\\gallery\\2\\akef\\rossi"
 }
