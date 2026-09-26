@@ -1,9 +1,13 @@
 module.exports = {
+    name: "Pixiv",
+
     parse(input) {
-        const m = input.match(/^(\d{8,9})_p\d+$/);
+        const match = input.match(/^(\d{8,9})_p\d+$/);
 
-        if (!m) return null;
+        if (!match) {
+            return null;
+        }
 
-        return `https://www.pixiv.net/artworks/${m[1]}`;
+        return `https://www.pixiv.net/artworks/${match[1]}`;
     }
 };

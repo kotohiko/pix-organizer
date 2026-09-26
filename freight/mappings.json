@@ -10,6 +10,12 @@
 
   "////////////// 歌赫娜学院 ゲヘナ学園 Gehenna Academy 게헨나 학원": "//////////////",
 
+  "////////////// 风纪委员会 げへなふうきいいんかい /////////////": "",
+  "hina": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\hina",
+  "日奈": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\hina",
+  "空崎日奈": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\hina",
+
+  "////////////// 万魔殿 パンデモニウムソサエティー /////////////": "",
   "iroha": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\iroha",
   "枣伊吕波": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\iroha",
   "168": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\iroha",
@@ -20,12 +26,18 @@
   "天童爱丽丝": "S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris",
   "arisu": "S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris",
 
+  "kei": "S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\kei",
+
   "////////////// 崔尼蒂综合学园 トリニティ総合学園 Trinity General School 트리니티 종합학원": "//////////////",
   "百合园圣娅": "S:\\po-assets\\gallery\\2\\bluearchive\\trinity\\seia",
   "圣娅": "S:\\po-assets\\gallery\\2\\bluearchive\\trinity\\seia",
   "seia": "S:\\po-assets\\gallery\\2\\bluearchive\\trinity\\seia",
 
   "////////////// 百鬼夜行联合学园 百鬼夜行連合学院 Allied Hyakkiyako Academy 백귀야행 연합학원": "//////////////",
+  "chise": "S:\\po-assets\\gallery\\2\\bluearchive\\hyakkiyako\\chise",
+  "Chise": "S:\\po-assets\\gallery\\2\\bluearchive\\hyakkiyako\\chise",
+  "千世": "S:\\po-assets\\gallery\\2\\bluearchive\\hyakkiyako\\chise",
+  "和乐千世": "S:\\po-assets\\gallery\\2\\bluearchive\\hyakkiyako\\chise",
 
   "////////////// 山海经高级中学 山海経高級中学校 Shanhaijing Secondary School 산해경고급중학교": "//////////////",
   "kisaki": "S:\\po-assets\\gallery\\2\\bluearchive\\shanhaijing\\kisaki",
@@ -65,6 +77,8 @@
   "小吉祥草王": "S:\\po-assets\\gallery\\2\\genshin\\nahida",
   "ナヒーダ": "S:\\po-assets\\gallery\\2\\genshin\\nahida",
 
+
+
   "************************* 崩坏：星穹铁道 Honkai: Star Rail 崩壊：スターレイル 붕괴: 스타레일 *************************": "",
   "hanabi": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
   "Hanabi": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
@@ -79,5 +93,8 @@
 
   "***************** 明日方舟：终末地 Arknights: Endfield アークナイツ:エンドフィールド 명일방주: 엔드필드 *****************": "",
   "洛茜": "S:\\po-assets\\gallery\\2\\akef\\rossi",
-  "rossi": "S:\\po-assets\\gallery\\2\\akef\\rossi"
+  "rossi": "S:\\po-assets\\gallery\\2\\akef\\rossi",
+
+  "***************************************** VTuber **************************************************************": "",
+  "saba": "S:\\po-assets\\gallery\\2\\vtuber\\saba"
 }

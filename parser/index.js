@@ -1,7 +1,11 @@
-const fs = require("fs");
-const path = require("path");
+const pixiv = require("./pixiv");
+const twitter = require("./twitter");
+const danbooru = require("./danbooru");
+const gkuncleshop = require("./gkuncleshop");
 
-module.exports = fs
-    .readdirSync(__dirname)
-    .filter(f => f.endsWith(".js") && f !== "index.js")
-    .map(f => require(path.join(__dirname, f)));
+module.exports = [
+    pixiv,
+    twitter,
+    danbooru,
+    gkuncleshop
+];

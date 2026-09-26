@@ -1,9 +1,15 @@
 module.exports = {
+    name: "Danbooru",
+
     parse(input) {
-        const m = input.match(/^httpsdanbooru\.donmai\.usposts(\d+)$/);
+        const match = input.match(
+            /^httpsdanbooru\.donmai\.usposts(\d+)$/
+        );
 
-        if (!m) return null;
+        if (!match) {
+            return null;
+        }
 
-        return `https://danbooru.donmai.us/posts/${m[1]}`;
+        return `https://danbooru.donmai.us/posts/${match[1]}`;
     }
 };

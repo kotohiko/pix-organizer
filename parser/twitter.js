@@ -1,12 +1,15 @@
 module.exports = {
+    name: "Twitter",
+
     parse(input) {
-        const m = input.match(/^httpsx\.com(.+?)status(\d+)photo\d+$/);
+        const match = input.match(
+            /^httpsx\.com(.+?)status(\d+)photo\d+$/
+        );
 
-        if (!m) return null;
+        if (!match) {
+            return null;
+        }
 
-        const username = m[1];
-        const tweetId = m[2];
-
-        return `https://x.com/${username}/status/${tweetId}`;
+        return `https://x.com/${match[1]}/status/${match[2]}`;
     }
 };
