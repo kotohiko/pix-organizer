@@ -1,3 +1,4 @@
+// noinspection JSUnusedGlobalSymbols
 module.exports = {
     name: "Pixiv",
 

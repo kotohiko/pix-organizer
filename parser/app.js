@@ -46,7 +46,7 @@ rl.on("line", async (line) => {
     for (const parser of parsers) {
         try {
             // Support both sync and async parser
-            result = await parser.parse(input);
+            result = parser.parse(input);
             if (result) {
                 matchedParserName = parser.name || parser.constructor.name || "Unnamed Parser";
                 break;

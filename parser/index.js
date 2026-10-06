@@ -1,7 +1,7 @@
-const pixiv = require("./pixiv");
-const twitter = require("./twitter");
-const danbooru = require("./danbooru");
-const gkuncleshop = require("./gkuncleshop");
+const pixiv = require("./sites/pixiv");
+const twitter = require("./sites/twitter");
+const danbooru = require("./sites/danbooru");
+const gkuncleshop = require("./sites/gkuncleshop");
 
 module.exports = [
     pixiv,
