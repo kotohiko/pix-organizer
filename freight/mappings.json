@@ -43,6 +43,8 @@
   "千世": "S:\\po-assets\\gallery\\2\\bluearchive\\hyakkiyako\\chise",
   "和乐千世": "S:\\po-assets\\gallery\\2\\bluearchive\\hyakkiyako\\chise",
 
+  "桐生桔梗": "S:\\po-assets\\gallery\\2\\bluearchive\\hyakkiyako\\kikyou",
+
   "////////////// 山海经高级中学 山海経高級中学校 Shanhaijing Secondary School 산해경고급중학교": "//////////////",
   "kisaki": "S:\\po-assets\\gallery\\2\\bluearchive\\shanhaijing\\kisaki",
   "Kisaki": "S:\\po-assets\\gallery\\2\\bluearchive\\shanhaijing\\kisaki",
@@ -94,11 +96,11 @@
   "哥伦比娅": "S:\\po-assets\\gallery\\2\\genshin\\columbina",
   "鸽伦比娅": "S:\\po-assets\\gallery\\2\\genshin\\columbina",
 
-
-
   "************************* 崩坏：星穹铁道 Honkai: Star Rail 崩壊：スターレイル 붕괴: 스타레일 *************************": "",
   "hanabi": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
   "Hanabi": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
+  "Sparkle": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
+  "sparkle": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
   "花火": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
   "はなび": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
   "스파클": "S:\\po-assets\\gallery\\2\\honkaisr\\hanabi&hibana",
@@ -113,9 +115,14 @@
   "云璃": "S:\\po-assets\\gallery\\2\\honkaisr\\yunli",
 
   "***************** 明日方舟：终末地 Arknights: Endfield アークナイツ:エンドフィールド 명일방주: 엔드필드 *****************": "",
-  "洛茜": "S:\\po-assets\\gallery\\2\\akef\\rossi",
-  "rossi": "S:\\po-assets\\gallery\\2\\akef\\rossi",
+  "洛茜": "S:\\po-assets\\gallery\\2\\arknights\\rossi",
+  "rossi": "S:\\po-assets\\gallery\\2\\arknights\\rossi",
 
   "***************************************** VTuber **************************************************************": "",
-  "saba": "S:\\po-assets\\gallery\\2\\vtuber\\saba"
+  "saba": "S:\\po-assets\\gallery\\2\\vtuber\\saba",
+
+  "***************************************** Cosers **************************************************************": "",
+  "ran3": "S:\\po-assets\\gallery\\paid-channel\\Coser：ran3",
+  "reng": "S:\\po-assets\\gallery\\paid-channel\\Coser：Reng",
+  "Reng": "S:\\po-assets\\gallery\\paid-channel\\Coser：Reng"
 }
