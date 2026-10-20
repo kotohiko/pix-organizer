@@ -4,7 +4,7 @@ module.exports = {
 
     parse(input) {
         const match = input.match(
-            /^httpsx\.com(.+?)status(\d+)(?:photo\d+)?$/
+            /^httpsx\.com(.+?)status(\d+)(?:(?:photo|video)\d+)?$/
         );
 
         if (!match) {

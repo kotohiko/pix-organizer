@@ -6,12 +6,22 @@
   "ba": "S:\\po-assets\\gallery\\2\\bluearchive",
   "ブルアカ": "S:\\po-assets\\gallery\\2\\bluearchive",
   "ブルーアーカイブ": "S:\\po-assets\\gallery\\2\\bluearchive",
+  "////////////// 夏莱 ": "//////////////////////////////////////////////////////////////////////",
+  "arona": "S:\\po-assets\\gallery\\2\\bluearchive\\schale\\arona",
+  "Arona": "S:\\po-assets\\gallery\\2\\bluearchive\\schale\\arona",
+  "阿洛娜": "S:\\po-assets\\gallery\\2\\bluearchive\\schale\\arona",
+  "plana": "S:\\po-assets\\gallery\\2\\bluearchive\\schale\\plana",
+  "Plana": "S:\\po-assets\\gallery\\2\\bluearchive\\schale\\plana",
+  "普拉娜": "S:\\po-assets\\gallery\\2\\bluearchive\\schale\\plana",
   "////////////// 阿拜多斯高等学园 アビドス高等学校 Abydos High School 아비도스 고등학교": "//////////////",
   "Hoshino": "S:\\po-assets\\gallery\\2\\bluearchive\\abeydos\\hoshino",
   "hoshino": "S:\\po-assets\\gallery\\2\\bluearchive\\abeydos\\hoshino",
   "小鸟游星野": "S:\\po-assets\\gallery\\2\\bluearchive\\abeydos\\hoshino",
 
   "////////////// 歌赫娜学院 ゲヘナ学園 Gehenna Academy 게헨나 학원": "//////////////",
+  "gehenna": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna",
+  "歌赫娜": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna",
+  "歌赫娜学院": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna",
 
   "////////////// 风纪委员会 げへなふうきいいんかい /////////////": "",
   "hina": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\hina",
@@ -20,22 +30,34 @@
   "空崎日奈": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\hina",
 
   "////////////// 万魔殿 パンデモニウムソサエティー /////////////": "",
-  "iroha": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\iroha",
-  "枣伊吕波": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\iroha",
-  "168": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\iroha",
-  "棗イロハ": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\iroha",
+  "万魔殿": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\pandemonium",
+  "iroha": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\pandemonium\\iroha",
+  "枣伊吕波": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\pandemonium\\iroha",
+  "168": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\pandemonium\\iroha",
+  "棗イロハ": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\pandemonium\\iroha",
+  "伊吹": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\pandemonium\\ibuki",
+  "丹花伊吹": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\pandemonium\\ibuki",
+  "ibuki": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\pandemonium\\ibuki",
+
+  "////////////// 便利屋68  /////////////": "",
+  "mutsuki": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\mutsuki",
+  "睦月": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\mutsuki",
+  "浅黄睦月": "S:\\po-assets\\gallery\\2\\bluearchive\\gehenna\\mutsuki",
 
   "////////////// 千禧年科技学院 ミレニアムサイエンススクール Millennium Science School 밀레니엄 사이언스 스쿨 /////////////": "",
-  "aris": "S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris",
-  "天童爱丽丝": "S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris",
-  "arisu": "S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris",
-
-  "kei": "S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\kei",
+  "aris": "S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris&kei",
+  "天童爱丽丝": "S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris&kei",
+  "arisu": "S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris&kei",
+  "kei": "S:\\po-assets\\gallery\\2\\bluearchive\\millennium\\aris&kei",
 
   "////////////// 崔尼蒂综合学园 トリニティ総合学園 Trinity General School 트리니티 종합학원": "//////////////",
   "百合园圣娅": "S:\\po-assets\\gallery\\2\\bluearchive\\trinity\\seia",
   "圣娅": "S:\\po-assets\\gallery\\2\\bluearchive\\trinity\\seia",
   "seia": "S:\\po-assets\\gallery\\2\\bluearchive\\trinity\\seia",
+
+  "mari": "S:\\po-assets\\gallery\\2\\bluearchive\\trinity\\mari",
+  "伊落玛丽": "S:\\po-assets\\gallery\\2\\bluearchive\\trinity\\mari",
+  "玛丽": "S:\\po-assets\\gallery\\2\\bluearchive\\trinity\\mari",
 
   "////////////// 百鬼夜行联合学园 百鬼夜行連合学院 Allied Hyakkiyako Academy 백귀야행 연합학원": "//////////////",
   "chise": "S:\\po-assets\\gallery\\2\\bluearchive\\hyakkiyako\\chise",
@@ -43,7 +65,9 @@
   "千世": "S:\\po-assets\\gallery\\2\\bluearchive\\hyakkiyako\\chise",
   "和乐千世": "S:\\po-assets\\gallery\\2\\bluearchive\\hyakkiyako\\chise",
 
+  "桔梗": "S:\\po-assets\\gallery\\2\\bluearchive\\hyakkiyako\\kikyou",
   "桐生桔梗": "S:\\po-assets\\gallery\\2\\bluearchive\\hyakkiyako\\kikyou",
+  "kikyou": "S:\\po-assets\\gallery\\2\\bluearchive\\hyakkiyako\\kikyou",
 
   "////////////// 山海经高级中学 山海経高級中学校 Shanhaijing Secondary School 산해경고급중학교": "//////////////",
   "kisaki": "S:\\po-assets\\gallery\\2\\bluearchive\\shanhaijing\\kisaki",
@@ -67,6 +91,11 @@
   "////////////// 阿里乌斯分校 アリウス分校 Arius Satellite School SRT 아리우스 분교": "//////////////",
 
   "////////////// 海兰德铁道学园 ハイランダー鉄道学園 Highlander Railroad Academy SRT 하이랜더 철도학원": "//////////////",
+  "橘光": "S:\\po-assets\\gallery\\2\\bluearchive\\highlander\\hikari&nozomi",
+  "橘望": "S:\\po-assets\\gallery\\2\\bluearchive\\highlander\\hikari&nozomi",
+  "橘希望": "S:\\po-assets\\gallery\\2\\bluearchive\\highlander\\hikari&nozomi",
+  "hikari": "S:\\po-assets\\gallery\\2\\bluearchive\\highlander\\hikari&nozomi",
+  "nozomi": "S:\\po-assets\\gallery\\2\\bluearchive\\highlander\\hikari&nozomi",
 
   "////////////// 狂猎艺术学园 ワイルドハント芸術学院 Wildhunt Academy of Arts 와일드헌트 예술학원": "//////////////",
 
@@ -83,13 +112,13 @@
   "小吉祥草王": "S:\\po-assets\\gallery\\2\\genshin\\nahida",
   "ナヒーダ": "S:\\po-assets\\gallery\\2\\genshin\\nahida",
 
-  "furina": "S:\\po-assets\\gallery\\2\\genshin\\furina",
-  "Furina": "S:\\po-assets\\gallery\\2\\genshin\\furina",
-  "focalors": "S:\\po-assets\\gallery\\2\\genshin\\furina",
-  "Focalors": "S:\\po-assets\\gallery\\2\\genshin\\furina",
-  "芙宁娜": "S:\\po-assets\\gallery\\2\\genshin\\furina",
-  "芙芙": "S:\\po-assets\\gallery\\2\\genshin\\furina",
-  "芙卡洛斯": "S:\\po-assets\\gallery\\2\\genshin\\furina",
+  "furina": "S:\\po-assets\\gallery\\2\\genshin\\furina&focalors",
+  "Furina": "S:\\po-assets\\gallery\\2\\genshin\\furina&focalors",
+  "focalors": "S:\\po-assets\\gallery\\2\\genshin\\furina&focalors",
+  "Focalors": "S:\\po-assets\\gallery\\2\\genshin\\furina&focalors",
+  "芙宁娜": "S:\\po-assets\\gallery\\2\\genshin\\furina&focalors",
+  "芙芙": "S:\\po-assets\\gallery\\2\\genshin\\furina&focalors",
+  "芙卡洛斯": "S:\\po-assets\\gallery\\2\\genshin\\furina&focalors",
 
   "columbina": "S:\\po-assets\\gallery\\2\\genshin\\columbina",
   "Columbina": "S:\\po-assets\\gallery\\2\\genshin\\columbina",
@@ -114,6 +143,10 @@
   "Yunli": "S:\\po-assets\\gallery\\2\\honkaisr\\yunli",
   "云璃": "S:\\po-assets\\gallery\\2\\honkaisr\\yunli",
 
+  "缇宝": "S:\\po-assets\\gallery\\2\\honkaisr\\tribbie",
+  "tribbie": "S:\\po-assets\\gallery\\2\\honkaisr\\tribbie",
+  "Tribbie": "S:\\po-assets\\gallery\\2\\honkaisr\\tribbie",
+
   "***************** 明日方舟：终末地 Arknights: Endfield アークナイツ:エンドフィールド 명일방주: 엔드필드 *****************": "",
   "洛茜": "S:\\po-assets\\gallery\\2\\arknights\\rossi",
   "rossi": "S:\\po-assets\\gallery\\2\\arknights\\rossi",
@@ -122,7 +155,12 @@
   "saba": "S:\\po-assets\\gallery\\2\\vtuber\\saba",
 
   "***************************************** Cosers **************************************************************": "",
-  "ran3": "S:\\po-assets\\gallery\\paid-channel\\Coser：ran3",
-  "reng": "S:\\po-assets\\gallery\\paid-channel\\Coser：Reng",
-  "Reng": "S:\\po-assets\\gallery\\paid-channel\\Coser：Reng"
+  "ran3": "S:\\po-assets\\gallery\\paid\\Coser：ran3",
+  "reng": "S:\\po-assets\\gallery\\paid\\Coser：Reng",
+  "Reng": "S:\\po-assets\\gallery\\paid\\Coser：Reng",
+
+  "***************************************** Anime **************************************************************": "",
+  "eromanga": "S:\\po-assets\\gallery\\2\\eromanga",
+  "Eromanga": "S:\\po-assets\\gallery\\2\\eromanga",
+  "埃罗芒阿老师": "S:\\po-assets\\gallery\\2\\eromanga"
 }

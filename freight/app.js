@@ -29,6 +29,21 @@ function isImageFile(filename) {
 }
 
 /**
+ * Check if the file is a cool moving picture (video)! 🎬
+ */
+function isVideoFile(filename) {
+    const ext = path.extname(filename).toLowerCase();
+    return ['.mp4', '.mkv', '.webm', '.avi', '.mov', '.wmv', '.flv', '.m4v', '.mpg', '.mpeg', '.ts', '.m2ts', '.3gp', '.rmvb'].includes(ext);
+}
+
+/**
+ * Check if the file is any shippable media (image or video)! 🖼️🎬
+ */
+function isMediaFile(filename) {
+    return isImageFile(filename) || isVideoFile(filename);
+}
+
+/**
  * FEATURE: Reload mappings.json & config.json on the fly! 🔄✨
  */
 function reloadConfigurations() {
@@ -78,7 +93,7 @@ function openFolder(targetDir) {
 }
 
 /**
- * Check how many images are currently waiting in the freight folder 📦🔍
+ * Check how many images & videos are currently waiting in the freight folder 📦🔍
  */
 async function checkCargoHold() {
     const sourceDir = config.sourceDir;
@@ -92,18 +107,21 @@ async function checkCargoHold() {
 
     try {
         const files = await fs.promises.readdir(sourceDir);
-        const imageFiles = files.filter(file => {
+        const mediaFiles = files.filter(file => {
             const fullPath = path.join(sourceDir, file);
-            return fs.statSync(fullPath).isFile() && isImageFile(file);
+            return fs.statSync(fullPath).isFile() && isMediaFile(file);
         });
 
+        const imageCount = mediaFiles.filter(file => isImageFile(file)).length;
+        const videoCount = mediaFiles.filter(file => isVideoFile(file)).length;
+
         logInfo(`==================================================`);
-        if (imageFiles.length === 0) {
-            logWarn(`The cargo hold is currently completely empty! (0 images) 🪹`);
+        if (mediaFiles.length === 0) {
+            logWarn(`The cargo hold is currently completely empty! (0 images & 0 videos) 🪹`);
         } else {
-            logInfo(`Yay! There are ${imageFiles.length} image(s) waiting to be shipped! 📦💕`);
-            imageFiles.forEach((file, idx) => {
-                console.log(`   ${idx + 1}. 📄 ${file}`);
+            logInfo(`Yay! There are ${mediaFiles.length} media file(s) waiting to be shipped! (🖼️ ${imageCount} image(s) + 🎬 ${videoCount} video(s)) 📦💕`);
+            mediaFiles.forEach((file, idx) => {
+                console.log(`   ${idx + 1}. ${isVideoFile(file) ? '🎬' : '🖼️'} ${file}`);
             });
         }
         logInfo(`==================================================`);
@@ -127,7 +145,7 @@ function startCargoWatcher() {
 
     try {
         fs.watch(sourceDir, (eventType, filename) => {
-            if (!filename || !isImageFile(filename)) return;
+            if (!filename || !isMediaFile(filename)) return;
 
             const fullPath = path.join(sourceDir, filename);
 
@@ -138,7 +156,7 @@ function startCargoWatcher() {
             debounceMap.set(filename, now);
 
             if (fs.existsSync(fullPath) && fs.statSync(fullPath).isFile()) {
-                logInfo(`[WATCHER ALERT] 🔔 Ooh! New image detected in cargo hold: "${filename}"!
+                logInfo(`[WATCHER ALERT] 🔔 Ooh! New media detected in cargo hold: "${filename}"!
                  Ready for shipping, Sensei 📦✨`);
             }
         });
@@ -218,17 +236,17 @@ async function dispatch(command) {
         return;
     }
 
-    const imageFiles = files.filter(file => {
+    const mediaFiles = files.filter(file => {
         const fullPath = path.join(sourceDir, file);
-        return fs.statSync(fullPath).isFile() && isImageFile(file);
+        return fs.statSync(fullPath).isFile() && isMediaFile(file);
     });
 
-    if (imageFiles.length === 0) {
-        logWarn(`The cargo hold is completely empty! No image goodies found to ship... (pout)`);
+    if (mediaFiles.length === 0) {
+        logWarn(`The cargo hold is completely empty! No image or video goodies found to ship... (pout)`);
         return;
     }
 
-    logInfo(`Found ${imageFiles.length} shiny picture(s) ready to be delivered! 💕`);
+    logInfo(`Found ${mediaFiles.length} shiny media file(s) ready to be delivered! 💕`);
 
     try {
         if (!fs.existsSync(targetDir)) {
@@ -243,16 +261,20 @@ async function dispatch(command) {
     let movedCount = 0;
     let errorCount = 0;
 
-    for (const file of imageFiles) {
+    for (const file of mediaFiles) {
         const srcPath = path.join(sourceDir, file);
         let destPath = path.join(targetDir, file);
 
+        // If the destination file already exists, overwrite it directly instead of renaming ♻️
         if (fs.existsSync(destPath)) {
-            const ext = path.extname(file);
-            const baseName = path.basename(file, ext);
-            const newName = `${baseName}_${Date.now()}${ext}`;
-            destPath = path.join(targetDir, newName);
-            logWarn(`File "${file}" already exists! Renaming to "${newName}" to keep it safe!`);
+            try {
+                await fs.promises.unlink(destPath);
+                logWarn(`File "${file}" already exists at destination! Overwriting the old copy as ordered, Sensei ♻️`);
+            } catch (unlinkErr) {
+                errorCount++;
+                logError(` [✕] Failed to overwrite existing file "${destPath}" | Reason: ${unlinkErr.message}`);
+                continue;
+            }
         }
 
         try {
@@ -291,7 +313,7 @@ if (argCmd) {
     console.log(`  🌸 Anime File Delivery Express (Node.js) 🌸`);
     console.log(`==================================================`);
     console.log(`Commands:`);
-    console.log(` • [ command ]      -> Ship images (e.g., kisaki)`);
+    console.log(` • [ command ]      -> Ship images & videos (e.g., kisaki)`);
     console.log(` • check            -> View files currently in cargo hold`);
     console.log(` • open [ command ] -> Open target folder (e.g., open kisaki)`);
     console.log(` • reload           -> Reload mappings.json config on the fly 🔄`);
